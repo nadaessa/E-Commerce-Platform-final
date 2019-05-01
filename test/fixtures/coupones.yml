@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  value: 1
+  expiration_type: 1
+  time: 2019-05-01
+  no_of_usage: 1
+  code: MyString
+  status: 1
+
+two:
+  type: 
+  value: 1
+  expiration_type: 1
+  time: 2019-05-01
+  no_of_usage: 1
+  code: MyString
+  status: 1

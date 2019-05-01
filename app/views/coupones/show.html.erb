@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @coupone.type %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @coupone.value %>
+</p>
+
+<p>
+  <strong>Expiration type:</strong>
+  <%= @coupone.expiration_type %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @coupone.time %>
+</p>
+
+<p>
+  <strong>No of usage:</strong>
+  <%= @coupone.no_of_usage %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @coupone.code %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @coupone.status %>
+</p>
+
+<%= link_to 'Edit', edit_coupone_path(@coupone) %> |
+<%= link_to 'Back', coupones_path %>

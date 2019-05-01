@@ -1,0 +1,52 @@
+<%= form_with(model: coupone, local: true) do |form| %>
+  <% if coupone.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(coupone.errors.count, "error") %> prohibited this coupone from being saved:</h2>
+
+      <ul>
+      <% coupone.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.text_field :type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :value %>
+    <%= form.number_field :value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :expiration_type %>
+    <%= form.number_field :expiration_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :time %>
+    <%= form.date_select :time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :no_of_usage %>
+    <%= form.number_field :no_of_usage %>
+  </div>
+
+  <div class="field">
+    <%= form.label :code %>
+    <%= form.text_field :code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.number_field :status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
