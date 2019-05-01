@@ -36,6 +36,23 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+# Active Admin Gem
+gem 'activeadmin'
+
+# Device Gem
+gem 'devise', '~> 4.2'
+
+# CanCanCan Gem
+gem 'cancancan', '~> 1.15'
+
+# resque Gem
+gem 'resque', '~> 1.25', '>= 1.25.2'
+
+# chartjs-ror Gem
+gem 'chartjs-ror'
+
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
