@@ -56,8 +56,11 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'bootstrap-sass', '3.0.2.1'
 
 #sportecs gem 
+gem 'sprockets-rails', '~> 3.2'
 
-
+#jquery & propper gem
+gem 'jquery-rails'
+gem 'popper_js', '~> 1.14.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
