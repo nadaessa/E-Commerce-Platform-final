@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>User Coupones</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Coupone</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_coupones.each do |user_coupone| %>
+      <tr>
+        <td><%= user_coupone.user %></td>
+        <td><%= user_coupone.coupone %></td>
+        <td><%= link_to 'Show', user_coupone %></td>
+        <td><%= link_to 'Edit', edit_user_coupone_path(user_coupone) %></td>
+        <td><%= link_to 'Destroy', user_coupone, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User Coupone', new_user_coupone_path %>
