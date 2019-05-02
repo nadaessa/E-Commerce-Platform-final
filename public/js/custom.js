@@ -46,17 +46,17 @@
     
     //------- Mailchimp js --------//  
 
-    // function mailChimp(){
-    //     $('#mc_embed_signup').find('form').ajaxChimp();
-    // }
-    // mailChimp();
+    function mailChimp(){
+        $('#mc_embed_signup').find('form').ajaxChimp();
+    }
+    mailChimp();
     
     /* ===== Parallax Effect===== */
 	
-	function parallaxEffect() {
-    	$('.bg-parallax').parallax();
-	}
-	parallaxEffect();
+	// function parallaxEffect() {
+    // 	$('.bg-parallax').parallax();
+	// }
+	// parallaxEffect();
     
     
     $('select').niceSelect();
