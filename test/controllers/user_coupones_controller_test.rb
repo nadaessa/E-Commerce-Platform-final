@@ -17,7 +17,7 @@ class UserCouponesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create user_coupone" do
     assert_difference('UserCoupone.count') do
-      post user_coupones_url, params: { user_coupone: { coupone: @user_coupone.coupone, user_id: @user_coupone.user_id } }
+      post user_coupones_url, params: { user_coupone: { coupone_id: @user_coupone.coupone_id, user_id: @user_coupone.user_id } }
     end
 
     assert_redirected_to user_coupone_url(UserCoupone.last)
@@ -34,7 +34,7 @@ class UserCouponesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update user_coupone" do
-    patch user_coupone_url(@user_coupone), params: { user_coupone: { coupone: @user_coupone.coupone, user_id: @user_coupone.user_id } }
+    patch user_coupone_url(@user_coupone), params: { user_coupone: { coupone_id: @user_coupone.coupone_id, user_id: @user_coupone.user_id } }
     assert_redirected_to user_coupone_url(@user_coupone)
   end
 
