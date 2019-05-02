@@ -51,7 +51,22 @@ gem 'resque', '~> 1.25', '>= 1.25.2'
 # chartjs-ror Gem
 gem 'chartjs-ror'
 
+# bootstrap Gem
+gem 'bootstrap', '~> 4.3.1'
+gem 'bootstrap-sass', '3.0.2.1'
 
+#sportecs gem 
+gem 'sprockets-rails', '~> 3.2'
+
+#jquery & propper gem
+gem 'jquery-rails'
+gem 'popper_js', '~> 1.14.5'
+
+#font
+gem 'font-awesome-sass', '~> 5.8.1'
+
+#faker
+gem 'faker', '~> 1.9', '>= 1.9.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
