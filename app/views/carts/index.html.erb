@@ -60,10 +60,10 @@
       
               <%= form_tag  url_for(:controller => 'carts', :action => 'update_quantity'), :method => 'get' do %>
 
-                <%= number_field_tag 'quantity', '1'%>
-                <%= number_field_tag 'id' , cartItem.product.id%>
+                <%= number_field_tag 'quantity', cartItem.quantity , :style =>"width: 55px;" %>
+                <%= hidden_field_tag 'id' , cartItem.product.id%>
     
-                <%= submit_tag "submit"%>  
+                <%= submit_tag "✔" , :style => "border-radius: 100%; background-color: green; color: white; border: 2px solid #4CAF50;"%>  
               <% end %>
 
               </div>

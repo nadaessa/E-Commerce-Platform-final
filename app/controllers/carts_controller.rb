@@ -1,17 +1,21 @@
 class CartsController < InheritedResources::Base
+  @@cartId=0
     def index
       @user =current_user.id
-      @cartId=Cart.select(:id).where(user_id: @user).last.id
-      @cartItems=CartItem.select(:quantity,:product_id).where(cart_id: @cartId)
+      @@cartId=Cart.select(:id).where(user_id: @user).last.id
+      @cartItems=CartItem.select(:quantity,:product_id).where(cart_id: @@cartId)
       #-----------------------------
       # get subtotal price  
       @@cart_items=@cartItems
       @subtotal=self.subtotal
       
     end
-  
+     # increase and decrease quantity inncart page
     def update_quantity
-      logger.debug "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+      @id=params[:id]
+      @quantity=params[:quantity]
+      CartItem.where(:cart_id =>@@cartId ,:product_id => @id).limit(1).update_all(:quantity => @quantity) 
+      redirect_to "/carts"
     end
 
 
