@@ -1,38 +1,9 @@
-<!-- <p id="notice"><%= notice %></p>
-
-<h1>Carts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @carts.each do |cart| %>
-      <tr>
-        <td><%= cart.user %></td>
-        <td><%= link_to 'Show', cart %></td>
-        <td><%= link_to 'Edit', edit_cart_path(cart) %></td>
-        <td><%= link_to 'Destroy', cart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Cart', new_cart_path %> -->
-
 
 <section class="banner_area">
   <div class="banner_inner d-flex align-items-center">
     <div class="container">
       <div
-        class="banner_content d-md-flex justify-content-between align-items-center"
-      >
+        class="banner_content d-md-flex justify-content-between align-items-center">
         <div class="mb-3 mb-md-0">
           <h2>Cart</h2>
           <p>Very us move be blessed multiply night</p>
@@ -62,6 +33,8 @@
             </tr>
           </thead>
           <tbody>
+          #------------------------
+          <% @cartItems.each do |cartItem| %>
             <tr>
               <td>
                 <div class="media">
@@ -73,12 +46,12 @@
                     <%= image_tag("product/single-product/cart-1.jpg") %> 
                   </div>
                   <div class="media-body">
-                    <p>Minimalistic shop for multipurpose use</p>
+                    <p><%= cartItem.product.title%></p>
                   </div>
                 </div>
               </td>
               <td>
-                <h5>$360.00</h5>
+                <h5>$<%= cartItem.product.price%></h5>
               </td>
               <td>
                 <div class="product_count">
@@ -87,128 +60,31 @@
                     name="qty"
                     id="sst"
                     maxlength="12"
-                    value="1"
+                    value=<%= cartItem.quantity%>
                     title="Quantity:"
-                    class="input-text qty"
-                  />
+                    class="input-text qty"/>
+                      
                   <button
                     onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
                     class="increase items-count"
-                    type="button"
-                  >
+                    type="button">
                     <i class="lnr lnr-chevron-up"></i>
                   </button>
                   <button
                     onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
                     class="reduced items-count"
-                    type="button"
-                  >
+                    type="button">
                     <i class="lnr lnr-chevron-down"></i>
                   </button>
                 </div>
               </td>
               <td>
-                <h5>$720.00</h5>
+                <h5>$<%= cartItem.quantity * cartItem.product.price%></h5>
               </td>
             </tr>
-            <tr>
-              <td>
-                <div class="media">
-                  <div class="d-flex">
-                    <!-- <img
-                      src="img/product/single-product/cart-1.jpg"
-                      alt=""
-                    /> -->
-                    <%= image_tag("product/single-product/cart-1.jpg") %> 
-                  </div>
-                  <div class="media-body">
-                    <p>Minimalistic shop for multipurpose use</p>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <h5>$360.00</h5>
-              </td>
-              <td>
-                <div class="product_count">
-                  <input
-                    type="text"
-                    name="qty"
-                    id="sst"
-                    maxlength="12"
-                    value="1"
-                    title="Quantity:"
-                    class="input-text qty"
-                  />
-                  <button
-                    onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                    class="increase items-count"
-                    type="button"
-                  >
-                    <i class="lnr lnr-chevron-up"></i>
-                  </button>
-                  <button
-                    onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                    class="reduced items-count"
-                    type="button"
-                  >
-                    <i class="lnr lnr-chevron-down"></i>
-                  </button>
-                </div>
-              </td>
-              <td>
-                <h5>$720.00</h5>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="media">
-                  <div class="d-flex">
-                    <!-- <img
-                      src="img/product/single-product/cart-1.jpg"
-                      alt=""
-                    /> -->
-                    <%= image_tag("product/single-product/cart-1.jpg") %> 
-                  </div>
-                  <div class="media-body">
-                    <p>Minimalistic shop for multipurpose use</p>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <h5>$360.00</h5>
-              </td>
-              <td>
-                <div class="product_count">
-                  <input
-                    type="text"
-                    name="qty"
-                    id="sst"
-                    maxlength="12"
-                    value="1"
-                    title="Quantity:"
-                    class="input-text qty"
-                  />
-                  <button
-                    onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                    class="increase items-count"
-                    type="button"
-                  >
-                    <i class="lnr lnr-chevron-up"></i>
-                  </button>
-                  <button
-                    onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                    class="reduced items-count"
-                    type="button"
-                  >
-                    <i class="lnr lnr-chevron-down"></i>
-                  </button>
-                </div>
-              </td>
-              <td>
-                <h5>$720.00</h5>
-              </td>
-            </tr>
+            <% end %>
+
+            #--------------------
             <tr class="bottom_button">
               <td>
                 <a class="gray_btn" href="#">Update Cart</a>
@@ -291,3 +167,5 @@
     </div>
   </div>
 </section>
+
+
