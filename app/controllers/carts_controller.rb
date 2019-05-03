@@ -4,19 +4,21 @@ class CartsController < InheritedResources::Base
       @cartId=Cart.select(:id).where(user_id: @user).last.id
       @cartItems=CartItem.select(:quantity,:product_id).where(cart_id: @cartId)
       #-----------------------------
-    # get subtotal price  
+      # get subtotal price  
       @@cart_items=@cartItems
-      @subtotal=self.subtotal 
+      @subtotal=self.subtotal
       
-
-      #@quantity = params[:qty].nil? ? 1 : params[:qty]
     end
+  
+    def update_quantity
+      logger.debug "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
+    end
+
 
     def subtotal 
       @sum=0
       @@cart_items.each do|cartItem|
           @sum =@sum + (cartItem.quantity* cartItem.product.price) 
-      
       end
       return @sum
     end

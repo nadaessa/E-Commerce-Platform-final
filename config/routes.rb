@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   resources :stores
   resources :categories
   resources :brands
-  resources :carts
+  resources :carts do
+    collection do
+      get :update_quantity, :as => :update_quantity
+    end   
+  end
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
