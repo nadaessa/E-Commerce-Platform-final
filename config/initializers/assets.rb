@@ -8,21 +8,32 @@ Rails.application.config.assets.version = '1.0'
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w(
-js/popper.js 
-js/stellar.js 
-# vendors/lightbox/simpleLightbox.min.js
-# vendors/nice-select/js/jquery.nice-select.min.js
-# vendors/isotope/imagesloaded.pkgd.min.js
-# vendors/isotope/isotope-min.js
-# vendors/owl-carousel/owl.carousel.min.js
-# js/jquery.ajaxchimp.min.js
-# custom.js
-# vendors/counter-up/jquery.waypoints.min.js
-# vendors/counter-up/jquery.counterup.js 
-# js/mail-script.js
-# js/theme.js
-# js/jquery-3.2.1.min.js 
-# js/bootstrap.min.js
+    vendors/linericon/style.css
+    css/font-awesome.min.css
+    css/themify-icons.css
+    css/flaticon.css 
+    vendors/owl-carousel/owl.carousel.min.css
+    vendors/lightbox/simpleLightbox.css
+    vendors/nice-select/css/nice-select.css
+    vendors/animate-css/animate.css 
+    vendors/jquery-ui/jquery-ui.css
+    css/style.css
+    css/responsive.css
+    js/popper.js
+    js/stellar.js 
+    vendors/lightbox/simpleLightbox.min.js
+    vendors/nice-select/js/jquery.nice-select.min.js
+    vendors/isotope/imagesloaded.pkgd.min.js
+    vendors/isotope/isotope-min.js
+    vendors/owl-carousel/owl.carousel.min.js
+    js/jquery.ajaxchimp.min.js
+    custom.js
+    vendors/counter-up/jquery.waypoints.min.js
+    vendors/counter-up/jquery.counterup.js 
+    js/mail-script.js
+    js/theme.js
+    js/jquery-3.2.1.min.js 
+    js/bootstrap.min.js
 )
 
 

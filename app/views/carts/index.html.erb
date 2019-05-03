@@ -53,31 +53,23 @@
               <td>
                 <h5>$<%= cartItem.product.price%></h5>
               </td>
+
               <td>
-                <div class="product_count">
-                  <input
-                    type="text"
-                    name="qty"
-                    id="sst"
-                    maxlength="12"
-                    value=<%= cartItem.quantity%>
-                    title="Quantity:"
-                    class="input-text qty"/>
-                      
-                  <button
-                    onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                    class="increase items-count"
-                    type="button">
-                    <i class="lnr lnr-chevron-up"></i>
-                  </button>
-                  <button
-                    onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                    class="reduced items-count"
-                    type="button">
-                    <i class="lnr lnr-chevron-down"></i>
-                  </button>
-                </div>
+
+              <div class="cart-quantity">
+      
+              <%= form_tag  url_for(:controller => 'carts', :action => 'update_quantity'), :method => 'get' do %>
+
+                <%= number_field_tag 'quantity', '1'%>
+                <%= number_field_tag 'id' , cartItem.product.id%>
+    
+                <%= submit_tag "submit"%>  
+              <% end %>
+
+              </div>
+
               </td>
+    
               <td>
                 <h5>$<%= cartItem.quantity * cartItem.product.price%></h5>
               </td>
@@ -106,7 +98,7 @@
                 <h5>Subtotal</h5>
               </td>
               <td>
-                <h5>$2160.00</h5>
+                <h5>$<%= @subtotal %></h5>
               </td>
             </tr>
             <tr class="shipping_area">
@@ -167,5 +159,3 @@
     </div>
   </div>
 </section>
-
-

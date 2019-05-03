@@ -18,3 +18,17 @@ AdminUser.create!(email: 'admin@example.com', password: 'password', password_con
         name: Faker::Commerce.department(1, true)
     }])
     end
+
+20.times do
+    Product.create([{
+        title: Faker::Commerce.product_name;
+        description: Faker::Lorem.sentence;
+        price: Faker::Commerce.price;
+        quantity: Faker::Number.number;
+        image: Faker::Name.name;  
+        store_id: Faker::Number.number;
+        category_id: Faker::Number.number;
+        brand_id: Faker::Number.number;
+        user_id: Faker::Number.number;
+    }])
+end     
