@@ -13,19 +13,23 @@
 
   <div class="field">
     <%= form.label :name %>
+    <br>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
     <%= form.label :summary %>
+    <br>
     <%= form.text_area :summary %>
   </div>
-
+  
   <div class="md-form">
     <%= form.label :user_id %>
+    <br>
     <%= form.select :user_id, ("<option></option>" + options_from_collection_for_select(User.all, :id, :name, )).html_safe %>
   </div>
-
+  <br>
+  <br>
   <div class="actions">
     <%= form.submit %>
   </div>
