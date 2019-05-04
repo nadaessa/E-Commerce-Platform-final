@@ -17,6 +17,23 @@ class ProductsController < InheritedResources::Base
     #render plain: @users.inspect
   end
 
+  def edit
+    @stores = Store.all
+    @categories = Category.all
+    @brands = Brand.all
+    @product = Product.find(params[:id])
+    end
+
+  def create
+    @product = Product.new(product_params)
+    @product.user = current_user
+    if @product.save
+        redirect_to @product
+    else
+        render 'new'
+    end
+  end
+
   
   private
 
