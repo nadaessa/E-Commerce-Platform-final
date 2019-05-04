@@ -21,9 +21,9 @@
     <%= form.text_area :summary %>
   </div>
 
-  <div class="field">
+  <div class="md-form">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.select :user_id, ("<option></option>" + options_from_collection_for_select(User.all, :id, :name, )).html_safe %>
   </div>
 
   <div class="actions">

@@ -14,7 +14,7 @@ class UserCouponesTest < ApplicationSystemTestCase
     visit user_coupones_url
     click_on "New User Coupone"
 
-    fill_in "Coupone", with: @user_coupone.coupone
+    fill_in "Coupone", with: @user_coupone.coupone_id
     fill_in "User", with: @user_coupone.user_id
     click_on "Create User coupone"
 
@@ -26,7 +26,7 @@ class UserCouponesTest < ApplicationSystemTestCase
     visit user_coupones_url
     click_on "Edit", match: :first
 
-    fill_in "Coupone", with: @user_coupone.coupone
+    fill_in "Coupone", with: @user_coupone.coupone_id
     fill_in "User", with: @user_coupone.user_id
     click_on "Update User coupone"
 
