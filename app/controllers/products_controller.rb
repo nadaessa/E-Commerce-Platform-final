@@ -34,7 +34,6 @@ class ProductsController < InheritedResources::Base
     end
   end
 
-  
   private
 
     def product_params

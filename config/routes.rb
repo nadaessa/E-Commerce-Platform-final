@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :seller
   resources :user_coupones
   resources :coupones
   resources :order_items
