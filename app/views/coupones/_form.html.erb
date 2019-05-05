@@ -24,15 +24,22 @@
     <%= form.number_field :value %>
   </div>
   <br>
-  <div class="field" >
-    <%= form.label :expiration_type  %>
-    <br>
-    <%= form.select :expiration_type, select_list = [ 'time', 'no_of_usage'] %>
-    <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'expiration_type','select-value': 'time'} do%>
-      <%= form.date_select :time %>
-    <% end %>
-    <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'expiration_type','select-value': 'no_of_usage'} do%>
-      <%= form.number_field :no_of_usage %>
+ 
+  <%= form_for(coupone) do |f| %> 
+
+    <div class="field">
+     <%= f.label :ExpirationType %>
+     <%= f.select :expiration_type, ['time', 'no_of_usage']%>
+    </div>
+      <!--  here comes ternary operator -->    
+    <div class="field <%= coupone.expiration_type == 'time' ? 'present' : 'hidden' %>">
+     <%= f.label :time %>
+     <%= f.number_field :time, options = { max: 0 }%>
+    </div>
+    <div class="field <%= coupone.expiration_type != 'time' ? 'present' : 'hidden' %>">
+     <%= f.label :no_of_usage %>
+     <%= form.number_field :no_of_usage , options = { min: 0 }%>
+    </div>
     <% end %>
   </div>
 
