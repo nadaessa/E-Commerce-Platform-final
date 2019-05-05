@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'search/index'
+  resources :search
   get '/seller/confirm/:id ', to: 'seller#confirm', as: 'confirm'
   get '/seller/deliver/:id ', to: 'seller#deliver', as: 'deliver'
   resources :seller
