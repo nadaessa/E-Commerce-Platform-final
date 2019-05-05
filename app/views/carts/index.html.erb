@@ -1,28 +1,8 @@
-
-<section class="banner_area">
-  <div class="banner_inner d-flex align-items-center">
-    <div class="container">
-      <div
-        class="banner_content d-md-flex justify-content-between align-items-center">
-        <div class="mb-3 mb-md-0">
-          <h2>Cart</h2>
-          <p>Very us move be blessed multiply night</p>
-        </div>
-        <div class="page_link">
-          <a href="index.html">Home</a>
-          <a href="cart.html">Cart</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!--================End Home Banner Area =================-->
-
 <!--================Cart Area =================-->
 <section class="cart_area">
   <div class="container">
     <div class="cart_inner">
-      <div class="table-responsive">
+      <div class="table-responsive" >
         <table class="table">
           <thead>
             <tr>
@@ -33,7 +13,6 @@
             </tr>
           </thead>
           <tbody>
-          #------------------------
           <% @cartItems.each do |cartItem| %>
             <tr>
               <td>
@@ -60,10 +39,10 @@
       
               <%= form_tag  url_for(:controller => 'carts', :action => 'update_quantity'), :method => 'get' do %>
 
-                <%= number_field_tag 'quantity', cartItem.quantity , :style =>"width: 55px;" %>
+                <%= number_field_tag 'quantity', cartItem.quantity , :style =>"width: 60px;" %>
                 <%= hidden_field_tag 'id' , cartItem.product.id%>
     
-                <%= submit_tag "✔" , :style => "border-radius: 100%; background-color: green; color: white; border: 2px solid #4CAF50;"%>  
+                <%= submit_tag "✔" ,:class=>"btn btn-outline-success btn-sm" ,:style => "border-radius: 100%;"%>  
               <% end %>
 
               </div>
@@ -75,30 +54,23 @@
               </td>
             </tr>
             <% end %>
-
-            #--------------------
-            <tr class="bottom_button">
-              <td>
-                <a class="gray_btn" href="#">Update Cart</a>
-              </td>
+            <tr class="bottom_button" rowspan=2>
               <td></td>
               <td></td>
+              <td>   <h4>SubTotal</h4> </td>
               <td>
-                <div class="cupon_text">
-                  <input type="text" placeholder="Coupon Code" />
-                  <a class="main_btn" href="#">Apply</a>
-                  <a class="gray_btn" href="#">Close Coupon</a>
-                </div>
+              <h4  style="color:red;">$<%= @subtotal %></h4>
               </td>
             </tr>
             <tr>
               <td></td>
               <td></td>
-              <td>
-                <h5>Subtotal</h5>
-              </td>
-              <td>
-                <h5>$<%= @subtotal %></h5>
+              <td colspan=2>
+                  <div class="cupon_text">
+                  <input type="text" placeholder="Coupon Code" />
+                  <a class="main_btn " href="#">Apply</a><br>
+                  <a class="gray_btn" href="#">Close Coupon</a>
+                </div>
               </td>
             </tr>
             <tr class="shipping_area">

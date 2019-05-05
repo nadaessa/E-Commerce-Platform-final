@@ -10,9 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 2019_05_05_124041) do
+=======
 ActiveRecord::Schema.define(version: 2019_05_05_083931) do
+>>>>>>> 0579c527dcc775c3418f04652b403a5e00deea75
 
-  create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
     t.string "resource_type"
@@ -26,6 +30,9 @@ ActiveRecord::Schema.define(version: 2019_05_05_083931) do
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
   end
 
+<<<<<<< HEAD
+  create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+=======
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -48,6 +55,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_083931) do
   end
 
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+>>>>>>> 0579c527dcc775c3418f04652b403a5e00deea75
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -59,13 +67,13 @@ ActiveRecord::Schema.define(version: 2019_05_05_083931) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "cart_items", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "cart_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "quantity"
     t.bigint "cart_id"
     t.bigint "product_id"
@@ -75,21 +83,21 @@ ActiveRecord::Schema.define(version: 2019_05_05_083931) do
     t.index ["product_id"], name: "index_cart_items_on_product_id"
   end
 
-  create_table "carts", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "carts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "coupones", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.integer "type"
+  create_table "coupones", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "coupone_type"
     t.integer "value"
     t.integer "expiration_type"
     t.date "time"
@@ -100,7 +108,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_083931) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "order_items", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "order_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "quantity"
     t.integer "state", default: 0
     t.bigint "order_id"
@@ -111,7 +119,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_083931) do
     t.index ["product_id"], name: "index_order_items_on_product_id"
   end
 
-  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "state", default: 0
     t.bigint "cart_id"
     t.datetime "created_at", null: false
@@ -119,7 +127,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_083931) do
     t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.float "price"
@@ -136,7 +144,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_083931) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
-  create_table "stores", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "stores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.text "summary"
     t.bigint "user_id"
@@ -145,7 +153,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_083931) do
     t.index ["user_id"], name: "index_stores_on_user_id"
   end
 
-  create_table "user_coupones", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "user_coupones", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "coupone_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -154,7 +162,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_083931) do
     t.index ["user_id"], name: "index_user_coupones_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
