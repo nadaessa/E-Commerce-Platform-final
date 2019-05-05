@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   resources :user_coupones
   resources :coupones
   resources :order_items
-  resources :orders
+  resources :orders do
+    collection do
+      get :update_order, :as => :update_order
+    end   
+  end
   resources :cart_items
   resources :products
   resources :stores
