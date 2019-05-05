@@ -22,7 +22,8 @@
                       src="img/product/single-product/cart-1.jpg"
                       alt=""
                     /> -->
-                    <%= image_tag("product/single-product/cart-1.jpg") %> 
+                    <%= image_tag(cartItem.product.image, class:'img-fluid w-100', style:'width:20px ; height:100px') if cartItem.product.image.attached?  %>
+                    <!-- <%= image_tag("product/single-product/cart-1.jpg") %>  -->
                   </div>
                   <div class="media-body">
                     <p><%= cartItem.product.title%></p>
