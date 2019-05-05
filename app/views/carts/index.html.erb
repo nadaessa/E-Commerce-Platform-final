@@ -1,10 +1,20 @@
+
 <!--================Cart Area =================-->
-<section class="cart_area">
+
+<% flash.each do |key, value| %>
+  <div class="alert alert-danger">
+  <%= value %>
+  </div> 
+<% end %>
+
+<section class="cart_area">  
+
   <div class="container">
     <div class="cart_inner">
       <div class="table-responsive" >
         <table class="table">
           <thead>
+
             <tr>
               <th scope="col">Product</th>
               <th scope="col">Price</th>
@@ -18,12 +28,9 @@
               <td>
                 <div class="media">
                   <div class="d-flex">
-                    <!-- <img
-                      src="img/product/single-product/cart-1.jpg"
-                      alt=""
-                    /> -->
+                  
                     <%= image_tag(cartItem.product.image, class:'img-fluid w-100', style:'width:20px ; height:100px') if cartItem.product.image.attached?  %>
-                    <!-- <%= image_tag("product/single-product/cart-1.jpg") %>  -->
+                   
                   </div>
                   <div class="media-body">
                     <p><%= cartItem.product.title%></p>
@@ -68,9 +75,13 @@
               <td></td>
               <td colspan=2>
                   <div class="cupon_text">
-                  <input type="text" placeholder="Coupon Code" />
-                  <a class="main_btn " href="#">Apply</a><br>
-                  <a class="gray_btn" href="#">Close Coupon</a>
+                   
+                  <%= form_tag  url_for(:controller => 'carts', :action => 'take_coupone_code'), :method => 'get' do %>
+                    <%= text_field_tag 'coupone_code'  %>
+                    <%= submit_tag "Apply" ,:class=>"btn btn-success" %>  
+                  <% end %>
+                  <p style="color:blue;"> Current Coupone code is : <%=@code %></p>
+                  
                 </div>
               </td>
             </tr>
@@ -122,7 +133,7 @@
               <td>
                 <div class="checkout_btn_inner">
                   <a class="gray_btn" href="#">Continue Shopping</a>
-                  <a class="main_btn" href="#">Proceed to checkout</a>
+                  <%= link_to "Checkout", do_checkout_carts_path , class: "main_btn"%>
                 </div>
               </td>
             </tr>
@@ -131,4 +142,5 @@
       </div>
     </div>
   </div>
+
 </section>

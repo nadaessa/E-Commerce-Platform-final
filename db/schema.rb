@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_05_124041) do
+ActiveRecord::Schema.define(version: 2019_05_05_170612) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "namespace"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_124041) do
     t.bigint "cart_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "coupone_code"
     t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 

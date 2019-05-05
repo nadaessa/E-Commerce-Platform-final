@@ -9,7 +9,7 @@
       <th>Value</th>
       <th>Expiration type</th>
       <th>Time</th>
-      <th>No of usage</th>
+      <th>Noofusage</th>
       <th>Code</th>
       <th>Status</th>
       <th colspan="3"></th>
@@ -19,7 +19,7 @@
   <tbody>
     <% @coupones.each do |coupone| %>
       <tr>
-        <td><%= coupone.type %></td>
+        <td><%= coupone.coupone_type %></td>
         <td><%= coupone.value %></td>
         <td><%= coupone.expiration_type %></td>
         <td><%= coupone.time %></td>

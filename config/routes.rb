@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :carts do
     collection do
       get :update_quantity, :as => :update_quantity
+      get :do_checkout, :as => :do_checkout
+      get :take_coupone_code, :as=>:take_coupone_code
     end   
   end
   devise_for :admin_users, ActiveAdmin::Devise.config
