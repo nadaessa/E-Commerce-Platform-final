@@ -27,6 +27,8 @@ class ProductsController < InheritedResources::Base
   def create
     @product = Product.new(product_params)
     @product.user = current_user
+    @user =current_user.id
+    @product.store=Store.select(:id).where(user_id: @user).first
     if @product.save
         redirect_to @product
     else
