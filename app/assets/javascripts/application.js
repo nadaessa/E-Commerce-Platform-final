@@ -17,11 +17,4 @@
 //= require popper
 //= require jquery_ujs
 //= require bootstrap
-//= require dependent-fields
-//= require jquery.turbolinks
-//= require underscore
-//= require_tree .
-$(document).ready(function() {
-    DependentFields.bind()
-});
 
