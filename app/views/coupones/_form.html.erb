@@ -12,10 +12,11 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :type %>
+    <%= form.label :coupone_type %>
     <br>
-    <%= form.select :type, select_list = [ 'fixed', 'discount'] %>
+    <%= form.select :coupone_type, options_for_select(Coupone.coupone_types.map {|k, v| [k, k]}) %>
   </div>
+
   <br>
   <br>
   <div class="field">
@@ -23,34 +24,27 @@
     <br>
     <%= form.number_field :value %>
   </div>
-  <br>
- 
-  <%= form_for(coupone) do |f| %> 
 
-    <div class="field">
-     <%= f.label :ExpirationType %>
-     <%= f.select :expiration_type, ['time', 'no_of_usage']%>
-    </div>
-      <!--  here comes ternary operator -->    
-    <div class="field <%= coupone.expiration_type == 'time' ? 'present' : 'hidden' %>">
-     <%= f.label :time %>
-     <%= f.number_field :time, options = { max: 0 }%>
-    </div>
-    <div class="field <%= coupone.expiration_type != 'time' ? 'present' : 'hidden' %>">
-     <%= f.label :no_of_usage %>
-     <%= form.number_field :no_of_usage , options = { min: 0 }%>
-    </div>
-    <% end %>
+  <br>
+  
+  <div  class="field">
+    <%= form.label :expiration_type %>
+    <%= form.select :expiration_type, options_for_select(Coupone.expiration_types.map {|k, v| [k, k]}) %>
   </div>
 
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+  <div  class='type_forms' id="time" >
+  <%= form.label :time %>
+  <%= form.datetime_select( :time) %> 
+  </div>
+
+
+  <div  class='type_forms' id="no_of_usage" >
+  <%= form.label :no_of_usage %>
+  <%= form.number_field :no_of_usage %> 
+  </div>
+
+ <br>
+ <br>
 
   <div class="field">
     <%= form.label :code %>
@@ -59,13 +53,16 @@
   </div>
   <br>
   <br>
+
   <div class="field">
     <%= form.label :status %>
     <br>
     <%= form.select :status, options_for_select(Coupone.statuses.map {|k, v| [k, k]}) %>
   </div>
+
   <br>
   <br>
+
   <div class="actions">
     <%= form.submit %>
   </div>

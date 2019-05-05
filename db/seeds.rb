@@ -5,16 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+ AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
 
 
 
-5.times do
-    Brand.create([{
-        name: Faker::Appliance.brand
-    }])
-    end
+#5.times do
+    #Brand.create([{
+   #     name: Faker::Appliance.brand
+   # }])
+   # end
 
 # 6.times do
 #     Category.create([{
@@ -31,25 +31,21 @@
 #     end
 
 
-5.times do
-    store_id = 0
-    Product.create([{
-        title: Faker::Commerce.product_name,
-        description: Faker::Lorem.sentence,
-        price: Faker::Commerce.price,
-        quantity: rand(1..60),
-<<<<<<< HEAD
-        image: 'img',
-=======
-        image: Faker::LoremPixel.image("730x411"),
->>>>>>> 0579c527dcc775c3418f04652b403a5e00deea75
-        store_id: store_id + 1,
-        category_id: 2,
-        brand_id: 3,
-        user_id: 1
-    }])
+# 5.times do
+#     store_id = 0
+#     Product.create([{
+#         title: Faker::Commerce.product_name,
+#         description: Faker::Lorem.sentence,
+#         price: Faker::Commerce.price,
+#         quantity: rand(1..60),
+#         image: Faker::LoremPixel.image("730x411"),
+#         store_id: store_id + 1,
+#         category_id: 2,
+#         brand_id: 3,
+#         user_id: 1
+#     }])
     
-end  
+# end  
 
 
 # -------------------------
