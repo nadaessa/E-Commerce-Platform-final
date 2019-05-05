@@ -10,11 +10,11 @@
 
 
 
-# 5.times do
-#     Brand.create([{
-#         name: Faker::Appliance.brand
-#     }])
-#     end
+5.times do
+    Brand.create([{
+        name: Faker::Appliance.brand
+    }])
+    end
 
 # 6.times do
 #     Category.create([{
@@ -38,7 +38,11 @@
         description: Faker::Lorem.sentence,
         price: Faker::Commerce.price,
         quantity: rand(1..60),
+<<<<<<< HEAD
+        image: 'img',
+=======
         image: Faker::LoremPixel.image("730x411"),
+>>>>>>> 0579c527dcc775c3418f04652b403a5e00deea75
         store_id: store_id + 1,
         category_id: 2,
         brand_id: 3,

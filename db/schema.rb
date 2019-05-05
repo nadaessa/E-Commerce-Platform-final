@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_05_083931) do
+ActiveRecord::Schema.define(version: 2019_05_05_124041) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "namespace"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_083931) do
   end
 
   create_table "coupones", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.integer "type"
+    t.integer "coupone_type"
     t.integer "value"
     t.integer "expiration_type"
     t.date "time"
