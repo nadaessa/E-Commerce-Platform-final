@@ -14,7 +14,7 @@
   <div class="field">
     <%= form.label :type %>
     <br>
-    <%= form.select :coupone_type, select_list = [ 'fixed', 'discount' ], class: "form-control" %>
+    <%= form.select :type, select_list = [ 'fixed', 'discount'] %>
   </div>
   <br>
   <br>
@@ -24,40 +24,38 @@
     <%= form.number_field :value %>
   </div>
   <br>
-  <div class="field">
-    <%= form.label :expiration_type %>
+  <div class="field" >
+    <%= form.label :expiration_type  %>
     <br>
-    <%= form.select :coupone_type, select_list = [ 'time', 'noOfUsage' ], class: "form-control" %>
+    <%= form.select :expiration_type, select_list = [ 'time', 'no_of_usage'] %>
+    <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'expiration_type','select-value': 'time'} do%>
+      <%= form.date_select :time %>
+    <% end %>
+    <%= content_tag :div, class: 'js-dependent-fields', data: {'select-id': 'expiration_type','select-value': 'no_of_usage'} do%>
+      <%= form.number_field :no_of_usage %>
+    <% end %>
   </div>
-  <br>
-  <br>
-  <div class="field">
-    <%= form.label :time %>
-    <br>
-    <%= form.date_select :time %>
-  </div>
+
   <br>
   <br>
   <br>
   <br>
   <br>
   <br>
-  <div class="field">
-    <%= form.label :no_of_usage %>
-    <br>
-    <%= form.number_field :no_of_usage %>
-  </div>
   <br>
+  <br>
+
   <div class="field">
     <%= form.label :code %>
     <br>
     <%= form.text_field :code %>
   </div>
   <br>
+  <br>
   <div class="field">
     <%= form.label :status %>
     <br>
-    <%= form.select :state, select_list = [ 'available', 'unavailable'], class: "form-control" %>
+    <%= form.select :status, options_for_select(Coupone.statuses.map {|k, v| [k, k]}) %>
   </div>
   <br>
   <br>
