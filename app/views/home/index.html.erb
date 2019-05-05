@@ -37,10 +37,10 @@
  <div class="col-md-6">
     <div class="header-search">
 
-    <%= form_tag(products_path, method: :get) do %>
-      <%= select_tag(:city_id, options_for_select([['Title', 0], ['Description', 1]])) %>
-      <%= text_field_tag :term %>
-      <%= submit_tag 'Search' %>
+    <%= form_tag(url_for(:controller => 'home', :action => 'index'), method: :get) do %>
+      <%= select_tag(:search_term, options_for_select([['Title', 0], ['Description', 1]])) %>
+      <%= text_field_tag :term, params[:term] %>
+      <%= submit_tag 'Search', name: nil %>
     <% end %>
     
     </div>
