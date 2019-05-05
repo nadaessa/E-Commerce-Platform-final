@@ -1,15 +1,10 @@
 class SellerController < ApplicationController
   def index
-   #@order_items = OrderItem.all
-   @pending_items = OrderItem.where("state = 0")
-   @confirmed_items = OrderItem.where("state = 1")
-
-    #@order_items = OrderItem.joins("INNER JOIN products ON order_items.product_id = products.id AND products.user_id = current_user")
-    # @users = User.all
-   # @user_ids = User.select(:id).where(@users.id = current_user)
-    #render plain: @user_ids.inspect
-    #@order_items = OrderItem.where.any_of(state: '0')
-    
+    @user =current_user.id
+    prooductIds = Product.select(:id).where(user_id: @user)
+    #render plain: prooductIds.inspect
+    @pending_items = OrderItem.where(state: 0 ,product_id: prooductIds)    
+    @confirmed_items = OrderItem.where(state: 1 ,product_id: prooductIds)
   end
 
   def confirm

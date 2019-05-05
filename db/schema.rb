@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_05_05_124041) do
+=======
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 2019_05_05_170612) do
+=======
+ActiveRecord::Schema.define(version: 2019_05_05_124041) do
+>>>>>>> b5e4fe1779a2428e369ca276f4f50a39bea704b9
+>>>>>>> ea8b50f19acbcbd165ec957e997058b26abd9809
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "namespace"
@@ -36,7 +44,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_124041) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -47,7 +55,9 @@ ActiveRecord::Schema.define(version: 2019_05_05_124041) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -116,6 +126,7 @@ ActiveRecord::Schema.define(version: 2019_05_05_124041) do
     t.bigint "cart_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "coupone_code"
     t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 

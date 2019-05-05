@@ -32,6 +32,21 @@
   </section>
   <!--================ End Offer Area =================-->
 
+<br><br>
+  <!------------------------ SEARCH BAR ------------------------------->
+ <div class="col-md-6">
+    <div class="header-search">
+
+    <%= form_tag(products_path, method: :get) do %>
+      <%= select_tag(:city_id, options_for_select([['Title', 0], ['Description', 1]])) %>
+      <%= text_field_tag :term %>
+      <%= submit_tag 'Search' %>
+    <% end %>
+    
+    </div>
+  </div>
+  <!------------------------ /SEARCH BAR ------------------------------->
+
  
   <!--================ Inspired Product Area =================-->
   <section class="inspired_product_area section_gap_bottom_custom">
