@@ -3,10 +3,8 @@ class SellerController < ApplicationController
     @user =current_user.id
     prooductIds = Product.select(:id).where(user_id: @user)
     #render plain: prooductIds.inspect
-    @pending_items = OrderItem.where(state: 0 ,product_id: prooductIds)
-    
+    @pending_items = OrderItem.where(state: 0 ,product_id: prooductIds)    
     @confirmed_items = OrderItem.where(state: 1 ,product_id: prooductIds)
-    
   end
 
   def confirm
