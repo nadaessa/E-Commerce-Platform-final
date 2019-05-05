@@ -16,40 +16,126 @@
     <%= form.text_field :title %>
   </div>
 
+  <br>
+<br>
+
   <div class="field">
     <%= form.label :description %>
     <%= form.text_area :description %>
   </div>
+
+  <br>
+  <br>
 
   <div class="field">
     <%= form.label :price %>
     <%= form.text_field :price %>
   </div>
 
+  <br>
+<br>
+
   <div class="field">
     <%= form.label :quantity %>
     <%= form.number_field :quantity %>
   </div>
 
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.text_field :image %>
-  </div>
+  <br>
+  <br>
 
   <div class="field">
     <%= form.label :store_id %>
-    <%= form.collection_select(:store_id, @stores, :id, :name, :include_blank => "Please select") %>
+    <%= form.collection_select(:store_id, @stores, :id, :name, :include_blank => "Please select store") %>
   </div>
+
+  <br>
+  <br>
 
   <div class="field">
   <%= form.label :category_id %>
-  <%= form.collection_select(:category_id, @categories, :id, :name, :include_blank => "Please select") %>
+  <%= form.collection_select(:category_id, @categories, :id, :name, :include_blank => "Please select category") %>
 </div>
+
+<br>
+<br>
 
   <div class="field">
     <%= form.label :brand_id %>
-    <%= form.collection_select(:brand_id, @brands, :id, :name, :include_blank => "Please select") %>
+    <%= form.collection_select(:brand_id, @brands, :id, :name, :include_blank => "Please select brand") %>
   </div>
+
+  <br>
+  <br>
+
+  <div class="field">
+      <%= form.label :image %>
+      <%= form.file_field :image %>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <br>
+  <br>
 
   <div class="actions">
     <%= form.submit %>

@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pending Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantity</th>
+      <th>State</th>
+      <th>Order</th>
+      <th>Product</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pending_items.each do |pending_item| %>
+      <tr>
+        <td><%= pending_item.quantity %></td>
+        <td><%= pending_item.state %></td>
+        <td><%= pending_item.order %></td>
+        <td><%= pending_item.product %></td>
+        <td><%= button_to 'Confirmed', confirm_path(pending_item), method: :get  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<h1>Confirmed Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantity</th>
+      <th>State</th>
+      <th>Order</th>
+      <th>Product</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @confirmed_items.each do |confirmed_item| %>
+      <tr>
+        <td><%= confirmed_item.quantity %></td>
+        <td><%= confirmed_item.state %></td>
+        <td><%= confirmed_item.order %></td>
+        <td><%= confirmed_item.product %></td>
+        <td><%= button_to 'Delivered', deliver_path(confirmed_item), method: :get %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Order Item', new_order_item_path %>

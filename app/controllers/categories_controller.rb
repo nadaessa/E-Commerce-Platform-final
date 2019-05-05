@@ -1,11 +1,16 @@
 class CategoriesController < InheritedResources::Base
 
   def index
+    @products = Product.all
     @categories = Category.all
+   
+    Rails.logger.debug("My object: #{@products.inspect}")
   end
    
   def show
     @category = Category.find(params[:id])
+
+  
   end
   def new
     @category = Category.new
@@ -39,6 +44,13 @@ class CategoriesController < InheritedResources::Base
     redirect_to categories_path
   end
  
+  def get_products_of_category
+    #  @category = Category.find(params[:id])
+    # @products = Product.select(:name, :price, :title).where(category_id : @category)
+
+
+    # @products = Product.where(category_id: @category)
+  end  
 
   private
 

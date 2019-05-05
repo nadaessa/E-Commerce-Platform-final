@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get '/seller/confirm/:id ', to: 'seller#confirm', as: 'confirm'
+  get '/seller/deliver/:id ', to: 'seller#deliver', as: 'deliver'
+  resources :seller
   resources :user_coupones
   resources :coupones
   resources :order_items
