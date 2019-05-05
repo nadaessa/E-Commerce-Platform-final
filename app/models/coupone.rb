@@ -6,6 +6,9 @@ class Coupone < ApplicationRecord
 
     validates :expiration_type, presence: true, format: { with: /\A[a-zA-Z]+\z/,
     message: "you must select an option" }
+    
+    validates :code, presence: true
+    validates :status, presence: true
 
     enum coupone_type: [:fixed, :discount]
     enum expiration_type: [:time, :no_of_usage]
