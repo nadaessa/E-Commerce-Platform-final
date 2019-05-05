@@ -31,21 +31,21 @@
 #     end
 
 
-# 5.times do
-#     store_id = 0
-#     Product.create([{
-#         title: Faker::Commerce.product_name,
-#         description: Faker::Lorem.sentence,
-#         price: Faker::Commerce.price,
-#         quantity: rand(1..60),
-#         image: 'img',
-#         store_id: store_id + 1,
-#         category_id: 2,
-#         brand_id: 3,
-#         user_id: 1
-#     }])
+5.times do
+    store_id = 0
+    Product.create([{
+        title: Faker::Commerce.product_name,
+        description: Faker::Lorem.sentence,
+        price: Faker::Commerce.price,
+        quantity: rand(1..60),
+        image: Faker::LoremPixel.image("730x411"),
+        store_id: store_id + 1,
+        category_id: 2,
+        brand_id: 3,
+        user_id: 1
+    }])
     
-# end  
+end  
 
 
 # -------------------------
