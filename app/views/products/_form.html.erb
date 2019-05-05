@@ -45,7 +45,7 @@
 
   <div class="field">
     <%= form.label :store_id %>
-    <%= form.collection_select(:store_id, @stores, :id, :name, :include_blank => "Please select") %>
+    <%= form.collection_select(:store_id, @stores, :id, :name, :include_blank => "Please select store") %>
   </div>
 
   <br>
@@ -53,7 +53,7 @@
 
   <div class="field">
   <%= form.label :category_id %>
-  <%= form.collection_select(:category_id, @categories, :id, :name, :include_blank => "Please select") %>
+  <%= form.collection_select(:category_id, @categories, :id, :name, :include_blank => "Please select category") %>
 </div>
 
 <br>
@@ -61,7 +61,7 @@
 
   <div class="field">
     <%= form.label :brand_id %>
-    <%= form.collection_select(:brand_id, @brands, :id, :name, :include_blank => "Please select") %>
+    <%= form.collection_select(:brand_id, @brands, :id, :name, :include_blank => "Please select brand") %>
   </div>
 
   <br>
