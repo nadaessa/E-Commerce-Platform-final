@@ -92,11 +92,21 @@ class CartsController < InheritedResources::Base
          
          #set order data in database
         Order.where(:id =>@@order_id).limit(1).update_all(:order_status=>"Pending",:Name => @name ,:Address =>@address,:city_id=>@city,:country_id =>@country,:paid_price=>@paid) 
-
         
+        #remove cart items and set it in order item table
+        @items=CartItem.where(cart_id: @@cartId)
+        
+        @items.each do|item|
+          @quantityOfitem=item.quantity
+          @productOfitem=item.product_id
+          @idOfitem=item.id
+          OrderItem.create(status:"Pending",quantity:@quantityOfitem ,product_id:@productOfitem,order_id:@@order_id)
+          CartItem.where(:id => @idOfitem).destroy_all
+        end
+           
         
       end 
-       redirect_to "/carts"
+        redirect_to "/carts"
     end
 #-----------------------------------------------------------------------
     def take_coupone_code
