@@ -8,8 +8,8 @@ class OrdersController < InheritedResources::Base
   @address=params[:Address]
   @city=params[:city]
   @country=params[:country] 
-  
-  Order.where(:cart_id =>@@cartId ).limit(1).update_all(state: "Pending",:Name => @name ,:Address =>@address,:city_id=>@city,:country_id =>@country) 
+  Order.where(:cart_id =>@@cartId ).update_all(state: "Pending",:Name => @name ,:Address =>@address,:city_id=>@city,:country_id =>@country) 
+   
 
  end 
 

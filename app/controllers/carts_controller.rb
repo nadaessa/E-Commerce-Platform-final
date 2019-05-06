@@ -1,10 +1,14 @@
 class CartsController < InheritedResources::Base
   @@cartId=0
   @@coupone=nil
+  @@order_id=nil
+
     def index
+      $sum=0
       @user =current_user.id
       @@cartId=Cart.select(:id).where(user_id: @user).last.id
       @cartItems=CartItem.select(:quantity,:product_id).where(cart_id: @@cartId)
+      @@order_id=Order.where(cart_id: @@cartId).last.id
       #-----------------------------
       # get subtotal price  
       @@cart_items=@cartItems
@@ -24,31 +28,40 @@ class CartsController < InheritedResources::Base
       @id=params[:id]
       @quantity=params[:quantity]
       CartItem.where(:cart_id =>@@cartId ,:product_id => @id).limit(1).update_all(:quantity => @quantity) 
-      redirect_to "/carts"
+       redirect_to "/carts"
     end
 
 
     def subtotal 
-      @sum=0
+      # $sum=0
       @@cart_items.each do|cartItem|
-          @sum =@sum + (cartItem.quantity* cartItem.product.price) 
+          $sum =$sum + (cartItem.quantity* cartItem.product.price) 
       end
-      return @sum
+      return $sum
     end
-
+#--------------------------------------------------------------------------------
     def do_checkout
+      #order_form data
+      @name=params[:name]
+      @address=params[:Address]
+      @city=params[:city]
+      @country=params[:country] 
+
+      #check quantity in product table
       cheak= Array.new
       @@cart_items.each do|cartItem|
         @cartitem_quantity=cartItem.quantity
         @cartitem_productId=cartItem.product_id
         @product_quantity=Product.select(:quantity).where(id:  @cartitem_productId).last.quantity
-
+         
+        #if quantity is insufficient
         if @product_quantity < @cartitem_quantity
           cheak.push("1");
           @productname=Product.select(:title).where(id: @cartitem_productId).last.title
            flash[:alert] = "The quantity of this product #{@productname} is insufficient"
         end
       end  
+        #if quantity is sufficient
       unless cheak.include?("1")
         @check_1=1
         @@cart_items.each do|cartItem|
@@ -58,19 +71,50 @@ class CartsController < InheritedResources::Base
 
           @product_quantity=@product_quantity-@cartitem_quantity
           Product.where(:id => @cartitem_productId).limit(1).update_all(:quantity => @product_quantity)
-      
-        end
-      end 
-      if @check_1==1 
-         # add data to order table in database 
-        Order.create(cart_id:@@cartId ,coupone_code:@@coupone.code)
-      end
-      redirect_to "http://127.0.0.1:3000/orders/update_order"
-    end
+   
+          #using coupone  discount in order        
 
+          @coupone_code=Order.select(:coupone_code).where(id:  @@order_id)
+          @coupone_type=Coupone.select(:coupone_type,:value).where(code: @coupone_code).last
+          if @coupone_type.coupone_type=="fixed"
+              @paid =$sum-@coupone_type.value
+              flash[:alert] = "Total price is $#{$sum} but after using coupone with Discounted $#{@coupone_type.value} 
+              You paid $#{@paid} "
+          elsif  @coupone_type.coupone_type=="discount" 
+            @paid=$sum-($sum*@coupone_type.value/100)
+            flash[:alert] = "Total price is $#{$sum} but after using coupone with Discounted #{@coupone_type.value}%
+            You paid $#{@paid} "
+          else
+            @paid=$sum 
+            flash[:alert] = "Total price is $#{$sum}  "
+          end
+        end
+         
+         #set order data in database
+        Order.where(:id =>@@order_id).limit(1).update_all(:order_status=>"Pending",:Name => @name ,:Address =>@address,:city_id=>@city,:country_id =>@country,:paid_price=>@paid) 
+        
+        #remove cart items and set it in order item table
+        @items=CartItem.where(cart_id: @@cartId)
+        
+        @items.each do|item|
+          @quantityOfitem=item.quantity
+          @productOfitem=item.product_id
+          @idOfitem=item.id
+          OrderItem.create(status:"Pending",quantity:@quantityOfitem ,product_id:@productOfitem,order_id:@@order_id)
+          CartItem.where(:id => @idOfitem).destroy_all
+        end
+           
+        
+      end 
+        redirect_to "/carts"
+    end
+#-----------------------------------------------------------------------
     def take_coupone_code
-      @@coupone=params[:coupone_code]
-      redirect_to "/carts"
+      @coupone=params[:coupone_code]
+      Order.create(order_status:"Pending",cart_id:@@cartId ,coupone_code:"#{@coupone}")
+      @@order_id=Order.last.id
+      
+      #  redirect_to "/carts"
     end  
 
 
@@ -80,6 +124,9 @@ class CartsController < InheritedResources::Base
     end
     def cart_item_params
       params.require(:cart_item).permit(:quantity, :cart_id, :product_id)
+    end
+    def order_params
+      params.require(:order).permit(:order_status, :cart_id,:Address,:City,:Country,:coupone_code)
     end
 
 
