@@ -7,6 +7,7 @@ class ProductsController < InheritedResources::Base
     
     @product_store = Product.includes(:store).find(params[:id])
     @product_brand = Product.includes(:brand).find(params[:id])
+    @reviews = Review.where(product_id: @product.id).order("created_at DESC")
   end
   
   def new

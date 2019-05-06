@@ -8,7 +8,7 @@ class Product < ApplicationRecord
   has_many :order_items
   has_many :orders, through: :order_items
   has_one_attached :image 
-
+  has_many :reviews
   def self.search(term, search_term)
     if term
       if search_term == "0"

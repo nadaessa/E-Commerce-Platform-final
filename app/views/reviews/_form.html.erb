@@ -1,0 +1,87 @@
+<%= form_for([@product, @review]) do |form| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% @review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :rating %>
+    <%= form.number_field :rating %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comment %>
+    <%= form.text_area :comment %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<!-- 
+
+<form
+class="row contact_form"
+action="contact_process.php"
+method="post"
+id="contactForm"
+novalidate="novalidate"
+>
+<div class="col-md-12">
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      name="name"
+      placeholder="Your Full name"
+    />
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="form-group">
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      placeholder="Email Address"
+    />
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      id="number"
+      name="number"
+      placeholder="Phone Number"
+    />
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="form-group">
+    <textarea
+      class="form-control"
+      name="message"
+      id="message"
+      rows="1"
+      placeholder="Review"
+    ></textarea>
+  </div>
+</div>
+<div class="col-md-12 text-right">
+ 
+  <%= link_to "create review" , new_product_review_path(@product), class: "btn submit_btn" %>
+  
+</div>
+</form> -->

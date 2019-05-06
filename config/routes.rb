@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   resources :search
   get '/seller/confirm/:id ', to: 'seller#confirm', as: 'confirm'
   get '/seller/deliver/:id ', to: 'seller#deliver', as: 'deliver'
@@ -13,7 +14,9 @@ Rails.application.routes.draw do
     end   
   end
   resources :cart_items
-  resources :products
+  resources :products do
+    resources :reviews, except: [:show, :index]
+  end  
   resources :stores
   resources :categories
   resources :brands
