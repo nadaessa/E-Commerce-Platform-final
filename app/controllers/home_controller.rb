@@ -5,22 +5,11 @@ class HomeController < ApplicationController
 
 
     def index
-     
-        # @products = Product.all
-    @categories = Category.all
-        # render plain: @product.inspect
-      @products = if params[:term]
-        if params[:search_term] == "0"
-          Product.where('title LIKE ?', "%#{params[:term]}%")
-        elsif params[:search_term] == "1"
-          Product.where('description LIKE ?', "%#{params[:term]}%")
-        end
-      else
-        Product.all
-      end
+      @products = Product.search(params[:term], params[:search_term])
     end
      
     
+
 
     # def addItem
     #   @user = current_user.id
