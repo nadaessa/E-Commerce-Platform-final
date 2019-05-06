@@ -106,7 +106,7 @@
               </br> <label>Country :</label></br>
                 <%=select_tag "country", options_from_collection_for_select(Country.order(:name), :id, :name), include_blank: true%></br>
                 </br></br>
-                <%= submit_tag "Checkout" , class: "main_btn"  %>
+                <%= submit_tag "Checkout" , class: "main_btn" %>
 
   </br>
 <% end %>

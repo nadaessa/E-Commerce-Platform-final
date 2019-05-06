@@ -7,6 +7,7 @@ class CartsController < InheritedResources::Base
       @user =current_user.id
       @@cartId=Cart.select(:id).where(user_id: @user).last.id
       @cartItems=CartItem.select(:quantity,:product_id).where(cart_id: @@cartId)
+      @@order_id=Order.where(cart_id: @@cartId).last.id
       #-----------------------------
       # get subtotal price  
       @@cart_items=@cartItems
@@ -26,7 +27,7 @@ class CartsController < InheritedResources::Base
       @id=params[:id]
       @quantity=params[:quantity]
       CartItem.where(:cart_id =>@@cartId ,:product_id => @id).limit(1).update_all(:quantity => @quantity) 
-      redirect_to "/carts"
+       redirect_to "/carts"
     end
 
 
@@ -61,10 +62,27 @@ class CartsController < InheritedResources::Base
 
           @product_quantity=@product_quantity-@cartitem_quantity
           Product.where(:id => @cartitem_productId).limit(1).update_all(:quantity => @product_quantity)
-      
+   #using coupone in order        
+          @coupone_code=Order.select(:coupone_code).where(id:  @@order_id)
+          @coupone_type=Coupone.select(:coupone_type,:value).where(code: @coupone_code).last
+          if @coupone_type.coupone_type=="fixed"
+              @paid =$sum-@coupone_type.value
+              flash[:alert] = "Total price is $#{$sum} but after using coupone with Discounted $#{@coupone_type.value} 
+              You paid $#{@paid} "
+          elsif  @coupone_type.coupone_type=="discount" 
+            @paid=$sum-($sum*@coupone_type.value/100)
+            flash[:alert] = "Total price is $#{$sum} but after using coupone with Discounted #{@coupone_type.value}%
+            You paid $#{@paid} "
+          else
+            @paid=$sum 
+            flash[:alert] = "Total price is $#{$sum}  "
+          end  
+          
         end
+   
+        # render plain:@paid.inspect
       end 
-      redirect_to "/carts"
+       redirect_to "/carts"
     end
 #-----------------------------------------------------------------------
     def take_coupone_code
@@ -72,7 +90,7 @@ class CartsController < InheritedResources::Base
       Order.create(order_status:"Pending",cart_id:@@cartId ,coupone_code:"#{@coupone}")
       @@order_id=Order.last.id
       
-       redirect_to "/carts"
+      #  redirect_to "/carts"
     end  
 
 
