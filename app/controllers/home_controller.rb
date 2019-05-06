@@ -1,6 +1,9 @@
 class HomeController < ApplicationController
     def index
         @products=Product.all
+        @products = Product.all
+    @categories = Category.all
+        # render plain: @product.inspect
     end
 
   

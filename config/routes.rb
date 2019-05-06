@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get '/seller/confirm/:id ', to: 'seller#confirm', as: 'confirm'
   get '/seller/deliver/:id ', to: 'seller#deliver', as: 'deliver'
+  get '/add_to_cart/addItem/:id ', to: 'home#addItem', as: 'addItem'
   resources :seller
   resources :user_coupones
   resources :coupones
@@ -23,3 +24,4 @@ Rails.application.routes.draw do
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+
