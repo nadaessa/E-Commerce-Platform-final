@@ -1,3 +1,5 @@
+
+
 <section class="home_banner_area mb-40">
     <div class="banner_inner d-flex align-items-center">
       <div class="container">
@@ -62,6 +64,14 @@
 
 
   <!--================ End Inspired Product Area =================-->
+
+
+  <% flash.each do |key, value| %>
+  <div class="alert alert-danger">
+  <%= value %>
+  </div> 
+  <% end %>
+
   <section class="cat_product_area section_gap">
       <div class="container">
         <div class="row flex-row-reverse">
@@ -75,7 +85,7 @@
 
               <div class="row">
           <% @products.each do |product| %>
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-6">
           <div class="single-product">
             <div class="product-img">
                 <!-- <%= image_tag("product/inspired-product/i1.jpg") %>  -->
