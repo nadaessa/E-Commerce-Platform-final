@@ -2,6 +2,7 @@ class CartsController < InheritedResources::Base
   @@cartId=0
   @@coupone=nil
   @@order_id=nil
+
     def index
       $sum=0
       @user =current_user.id
@@ -89,8 +90,10 @@ class CartsController < InheritedResources::Base
           end
         end
          
-         #set order datat in database
+         #set order data in database
         Order.where(:id =>@@order_id).limit(1).update_all(:order_status=>"Pending",:Name => @name ,:Address =>@address,:city_id=>@city,:country_id =>@country,:paid_price=>@paid) 
+
+        
         
       end 
        redirect_to "/carts"
