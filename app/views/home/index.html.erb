@@ -1,3 +1,5 @@
+
+
 <section class="home_banner_area mb-40">
     <div class="banner_inner d-flex align-items-center">
       <div class="container">
@@ -59,11 +61,31 @@
           </div>
         </div>
       </div>
-     
 
-      <div class="row">
+
+  <!--================ End Inspired Product Area =================-->
+
+
+  <% flash.each do |key, value| %>
+  <div class="alert alert-danger">
+  <%= value %>
+  </div> 
+  <% end %>
+
+  <section class="cat_product_area section_gap">
+      <div class="container">
+        <div class="row flex-row-reverse">
+          <div class="col-lg-9">
+         
+            
+            <div class="latest_product_inner">
+
+
+
+
+              <div class="row">
           <% @products.each do |product| %>
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-6">
           <div class="single-product">
             <div class="product-img">
                 <!-- <%= image_tag("product/inspired-product/i1.jpg") %>  -->
@@ -78,9 +100,10 @@
                 <a href="#">
                   <i class="ti-heart"></i>
                 </a>
-                <a href="#">
-                  <i class="ti-shopping-cart"></i>
-                </a>
+                
+                    <%= button_to 'addItem', addItem_path(product), method: :get  %>
+                  <!-- <i class="ti-shopping-cart"></i> -->
+                
               </div>
             </div>
             <div class="product-btm">
@@ -96,7 +119,103 @@
         </div>
         <% end %>
        </div>
-       
-    </div>
-  </section>
-  <!--================ End Inspired Product Area =================-->
+
+
+
+
+            </div>
+          </div>
+    
+    
+    
+    
+          <div class="col-lg-3">
+            
+            <div class="left_sidebar_area">
+              <aside class="left_widgets p_filter_widgets">
+                <div class="l_w_title">
+                  <h3>Browse Categories</h3>
+                </div>
+                <div class="widgets_inner">
+                  <ul class="list">
+                      <% @categories.each do |category| %>
+                    <li>
+                      <%= link_to categories_path do %>
+                  
+                      <%= category.name %>
+                      <% end %>
+                    </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </aside>
+    
+              <aside class="left_widgets p_filter_widgets">
+                <div class="l_w_title">
+                  <h3>Product Brand</h3>
+                </div>
+                <div class="widgets_inner">
+                  <ul class="list">
+                    <li>
+                      <a href="#">Apple</a>
+                    </li>
+                    <li>
+                      <a href="#">Asus</a>
+                    </li>
+                    <li class="active">
+                      <a href="#">Gionee</a>
+                    </li>
+                    <li>
+                      <a href="#">Micromax</a>
+                    </li>
+                    <li>
+                      <a href="#">Samsung</a>
+                    </li>
+                  </ul>
+                </div>
+              </aside>
+    
+              <aside class="left_widgets p_filter_widgets">
+                <div class="l_w_title">
+                  <h3>Color Filter</h3>
+                </div>
+                <div class="widgets_inner">
+                  <ul class="list">
+                    <li>
+                      <a href="#">Black</a>
+                    </li>
+                    <li>
+                      <a href="#">Black Leather</a>
+                    </li>
+                    <li class="active">
+                      <a href="#">Black with red</a>
+                    </li>
+                    <li>
+                      <a href="#">Gold</a>
+                    </li>
+                    <li>
+                      <a href="#">Spacegrey</a>
+                    </li>
+                  </ul>
+                </div>
+              </aside>
+    
+              <aside class="left_widgets p_filter_widgets">
+                <div class="l_w_title">
+                  <h3>Price Filter</h3>
+                </div>
+                <div class="widgets_inner">
+                  <div class="range_item">
+                    <div id="slider-range"></div>
+                    <div class="">
+                      <label for="amount">Price : </label>
+                      <input type="text" id="amount" readonly />
+                    </div>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

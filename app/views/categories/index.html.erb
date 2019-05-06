@@ -95,7 +95,7 @@
       </div>
 
 
-
+<!----------------------------------------------------------Categories------------------------------------------------------>
 
       <div class="col-lg-3">
         
@@ -109,7 +109,7 @@
                   <% @categories.each do |category| %>
                 <li>
                   <%= link_to categories_path do %>
-                  <!-- <a href="#"><%= category.name %></a> -->
+              
                   <%= category.name %>
                   <% end %>
                 </li>
@@ -117,6 +117,8 @@
               </ul>
             </div>
           </aside>
+
+<!----------------------------------------------------------Brand------------------------------------------------------>
 
           <aside class="left_widgets p_filter_widgets">
             <div class="l_w_title">
@@ -143,9 +145,11 @@
             </div>
           </aside>
 
-          <aside class="left_widgets p_filter_widgets">
+<!----------------------------------------------------------Seller------------------------------------------------------>
+         
+<aside class="left_widgets p_filter_widgets">
             <div class="l_w_title">
-              <h3>Color Filter</h3>
+              <h3>Seller Filter</h3>
             </div>
             <div class="widgets_inner">
               <ul class="list">
@@ -167,6 +171,8 @@
               </ul>
             </div>
           </aside>
+
+<!----------------------------------------------------------price------------------------------------------------------>
 
           <aside class="left_widgets p_filter_widgets">
             <div class="l_w_title">

@@ -4,8 +4,7 @@ class Coupone < ApplicationRecord
     message: "you must select an option" }
     validates :value, presence: true
 
-    validates :expiration_type, presence: true, format: { with: /\A[a-zA-Z]+\z/,
-    message: "you must select an option" }
+    validates :expiration_type, presence: true
     
     validates :code, presence: true
     validates :status, presence: true

@@ -3,8 +3,8 @@ class ProductsController < InheritedResources::Base
   def show
         
     @product = Product.find params[:id]
-
     @product_cat = Product.includes(:category).find(params[:id])
+    
     @product_store = Product.includes(:store).find(params[:id])
     @product_brand = Product.includes(:brand).find(params[:id])
   end
