@@ -1,28 +1,22 @@
-<%= form_with(model: order, local: true) do |form| %>
-    <% if order.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(order.errors.count, "error") %> prohibited this order from being saved:</h2>
-  
-        <ul>
-        <% order.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
+    
+    <div class="container">
+        <h3>your order details : </h3>
+    <%= form_tag  url_for(:controller => 'orders', :action => 'update_order'), :method => 'get' do %>
+      <label>Your Name :</label>
+      <%= text_field_tag 'name'%></br>
+      <label>Your Address :</label>
+      <%= text_field_tag 'Address'%></br>
+      
+      <label>City :</label></br>
+      <%=select_tag "city", options_from_collection_for_select(City.order(:name), :id, :name), include_blank: true%></br>
+      
+     </br> <label>Country :</label></br>
+      <%=select_tag "country", options_from_collection_for_select(Country.order(:name), :id, :name), include_blank: true%></br>
+      </br></br>
+      <%= submit_tag "Order Now" ,:class=>"btn btn-primary" %>  
+      </br>
     <% end %>
-  
-    <div class="field">
-      <%= form.label :Name %>
-      <%= form.text_field :Name %>
     </div>
+
   
-    <div class="field">
-      <%= form.label :Address %>
-      <%= form.text_field :Address %>
-    </div>
-  
-    <div class="actions">
-      <%= form.submit %>
-    </div>
-  <% end %>
-  
+ 

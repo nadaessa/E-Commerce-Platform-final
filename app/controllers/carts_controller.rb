@@ -63,7 +63,7 @@ class CartsController < InheritedResources::Base
       end 
       if @check_1==1 
          # add data to order table in database 
-        Order.create(cart_id:@@cartId ,state: "Pending",coupone_code:@@coupone.code)
+        Order.create(cart_id:@@cartId ,coupone_code:@@coupone.code)
       end
       redirect_to "http://127.0.0.1:3000/orders/update_order"
     end
