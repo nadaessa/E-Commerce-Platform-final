@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_06_194607) do
+ActiveRecord::Schema.define(version: 2019_05_06_220442) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 2019_05_06_194607) do
     t.string "Name"
     t.integer "country_id"
     t.integer "city_id"
+    t.integer "paid_price"
     t.index ["cart_id"], name: "index_orders_on_cart_id"
   end
 

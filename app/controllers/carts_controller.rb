@@ -40,19 +40,27 @@ class CartsController < InheritedResources::Base
     end
 #--------------------------------------------------------------------------------
     def do_checkout
+      #order_form data
+      @name=params[:name]
+      @address=params[:Address]
+      @city=params[:city]
+      @country=params[:country] 
 
+      #check quantity in product table
       cheak= Array.new
       @@cart_items.each do|cartItem|
         @cartitem_quantity=cartItem.quantity
         @cartitem_productId=cartItem.product_id
         @product_quantity=Product.select(:quantity).where(id:  @cartitem_productId).last.quantity
-
+         
+        #if quantity is insufficient
         if @product_quantity < @cartitem_quantity
           cheak.push("1");
           @productname=Product.select(:title).where(id: @cartitem_productId).last.title
            flash[:alert] = "The quantity of this product #{@productname} is insufficient"
         end
       end  
+        #if quantity is sufficient
       unless cheak.include?("1")
         @check_1=1
         @@cart_items.each do|cartItem|
@@ -62,7 +70,9 @@ class CartsController < InheritedResources::Base
 
           @product_quantity=@product_quantity-@cartitem_quantity
           Product.where(:id => @cartitem_productId).limit(1).update_all(:quantity => @product_quantity)
-   #using coupone in order        
+   
+          #using coupone  discount in order        
+
           @coupone_code=Order.select(:coupone_code).where(id:  @@order_id)
           @coupone_type=Coupone.select(:coupone_type,:value).where(code: @coupone_code).last
           if @coupone_type.coupone_type=="fixed"
@@ -76,11 +86,12 @@ class CartsController < InheritedResources::Base
           else
             @paid=$sum 
             flash[:alert] = "Total price is $#{$sum}  "
-          end  
-          
+          end
         end
-   
-        # render plain:@paid.inspect
+         
+         #set order datat in database
+        Order.where(:id =>@@order_id).limit(1).update_all(:order_status=>"Pending",:Name => @name ,:Address =>@address,:city_id=>@city,:country_id =>@country,:paid_price=>@paid) 
+        
       end 
        redirect_to "/carts"
     end
