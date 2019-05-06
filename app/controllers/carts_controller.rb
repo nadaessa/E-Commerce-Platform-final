@@ -1,7 +1,9 @@
 class CartsController < InheritedResources::Base
   @@cartId=0
   @@coupone=nil
+  @@order_id=nil
     def index
+      $sum=0
       @user =current_user.id
       @@cartId=Cart.select(:id).where(user_id: @user).last.id
       @cartItems=CartItem.select(:quantity,:product_id).where(cart_id: @@cartId)
@@ -29,14 +31,15 @@ class CartsController < InheritedResources::Base
 
 
     def subtotal 
-      @sum=0
+      # $sum=0
       @@cart_items.each do|cartItem|
-          @sum =@sum + (cartItem.quantity* cartItem.product.price) 
+          $sum =$sum + (cartItem.quantity* cartItem.product.price) 
       end
-      return @sum
+      return $sum
     end
-
+#--------------------------------------------------------------------------------
     def do_checkout
+
       cheak= Array.new
       @@cart_items.each do|cartItem|
         @cartitem_quantity=cartItem.quantity
@@ -61,16 +64,15 @@ class CartsController < InheritedResources::Base
       
         end
       end 
-      if @check_1==1 
-         # add data to order table in database 
-        Order.create(cart_id:@@cartId ,coupone_code:@@coupone.code)
-      end
-      redirect_to "http://127.0.0.1:3000/orders/update_order"
-    end
-
-    def take_coupone_code
-      @@coupone=params[:coupone_code]
       redirect_to "/carts"
+    end
+#-----------------------------------------------------------------------
+    def take_coupone_code
+      @coupone=params[:coupone_code]
+      Order.create(order_status:"Pending",cart_id:@@cartId ,coupone_code:"#{@coupone}")
+      @@order_id=Order.last.id
+      
+       redirect_to "/carts"
     end  
 
 
@@ -80,6 +82,9 @@ class CartsController < InheritedResources::Base
     end
     def cart_item_params
       params.require(:cart_item).permit(:quantity, :cart_id, :product_id)
+    end
+    def order_params
+      params.require(:order).permit(:order_status, :cart_id,:Address,:City,:Country,:coupone_code)
     end
 
 

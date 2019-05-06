@@ -13,7 +13,9 @@
      </br> <label>Country :</label></br>
       <%=select_tag "country", options_from_collection_for_select(Country.order(:name), :id, :name), include_blank: true%></br>
       </br></br>
-      <%= submit_tag "Order Now" ,:class=>"btn btn-primary" %>  
+      <div class="checkout_btn_inner">
+      <%= submit_tag "Order Now" ,:class=>"btn btn-primary" %>
+      </div>  
       </br>
     <% end %>
     </div>
