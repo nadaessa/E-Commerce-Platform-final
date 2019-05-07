@@ -29,27 +29,14 @@
                   class="carousel slide"
                   data-ride="carousel"
                 >
-                  
                   <div class="carousel-inner">
                     <div class="carousel-item active">
-                      <!-- <img
-                        class="d-block w-100"
-                        src="img/product/single-product/s-product-1.jpg"
-                        alt="First slide"
-                      /> -->
-                      <!-- <%= @product.image %> -->
-                      <!-- <%= image_tag("product/single-product/s-product-1.jpg") %> -->
                       <%= link_to image_tag @product.image , :class => "carousel-item active" , :alt =>"First slide"%>
                     </div>
-                  
-                 
                   </div>
                 </div>
               </div>
             </div>
-
-
-
             <div class="col-lg-5 offset-lg-1">
               <div class="s_product_text">
                 <h3> <%= @product.title %></h3>
@@ -126,9 +113,7 @@
                 >Description</a
               >
             </li>
-           
             </li>
-          
             <li class="nav-item">
               <a
                 class="nav-link active"
@@ -142,10 +127,6 @@
               >
             </li>
           </ul>
-
-
-
-
           <div class="tab-content" id="myTabContent">
             <div
               class="tab-pane fade"
@@ -156,7 +137,6 @@
               <p>
                   <%= @product.description %>
               </p>
-  
             </div>
             <div
               class="tab-pane fade"
@@ -164,7 +144,6 @@
               role="tabpanel"
               aria-labelledby="profile-tab"
             >
-              
             </div>
             <div
               class="tab-pane fade"
@@ -175,8 +154,6 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="comment_list">
-         
-              
                     <div class="review_item">
                       <div class="media">
                         <div class="d-flex">
@@ -294,10 +271,6 @@
                         <div class="media-body">
                           <h4><%= review.user.name %></h4>
                           <i class="fa fa-star"><%= review.rating%></i>
-                          <!-- <i class="fa fa-star"><%= review.rating%></i>
-                          <i class="fa fa-star"><%= review.rating%></i>
-                          <i class="fa fa-star"></i>
-                          <i class="fa fa-star"></i> -->
                         </div>
                       </div>
                       <p>
@@ -306,26 +279,7 @@
                     </div>
                     <% end %>
                     <% end %>
-
-                
-                   
-                  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                </div>
               </div>
 
                 <div class="col-lg-6">
