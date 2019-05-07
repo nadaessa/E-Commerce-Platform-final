@@ -19,11 +19,9 @@ class OrderItemsController < InheritedResources::Base
       if @check ==1
         @status=@first_item.status
         Order.where(id: order.id).update_all(order_status:@status)
+        break
       end
     end
-
-
-
   end
 
   private
