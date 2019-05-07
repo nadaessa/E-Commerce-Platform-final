@@ -76,39 +76,49 @@ class CartsController < InheritedResources::Base
           Product.where(:id => @cartitem_productId).limit(1).update_all(:quantity => @product_quantity)
         end
           #using coupone  discount in order 
- 
           @coupone=Coupone.last
-          if @coupone.status=="available"
-              if @coupone.coupone_type=="fixed"
-                  @paid =$sum-@coupone.value
-                  flash[:alert] = "Total price is $#{$sum} but after using coupone with Discounted $#{@coupone.value} 
-                  You paid $#{@paid} "
-              elsif  @coupone.coupone_type=="discount" 
-                @paid=$sum-($sum*(@coupone.value)/100)
-                flash[:alert] = "Total price is $#{$sum} but after using coupone with Discounted #{@coupone.value}%
-                You paid $#{@paid} "
-              else
-                @paid=$sum 
-                flash[:alert] = "Total price is $#{$sum}  "
-              end
+          @record=UserCoupone.where(user_id: current_user.id ,coupone_id:  @coupone.id).empty?
+          if @record == true
+              if @coupone.status=="available"
+                  if @coupone.coupone_type=="fixed"
+                      @paid =$sum-@coupone.value
+                      flash[:alert] = "Total price is $#{$sum} but after using coupone with Discounted $#{@coupone.value} 
+                      You paid $#{@paid} "
+                  elsif  @coupone.coupone_type=="discount" 
+                    @paid=$sum-($sum*(@coupone.value)/100)
+                    flash[:alert] = "Total price is $#{$sum} but after using coupone with Discounted #{@coupone.value}%
+                    You paid $#{@paid} "
+                  else
+                    @paid=$sum 
+                    flash[:alert] = "Total price is $#{$sum}  "
+                  end  
+              #set in coupone_user table
+              @user =current_user.id
+              UserCoupone.create(user_id: @user,coupone_id:@coupone.id)
 
+            elsif @coupone.status=="unvailable"
+              @paid=$sum 
+              flash[:alert] = "Total price is $#{$sum}  "
+             end
+              
+          elsif  @record == false
+            flash[:alert] = "You Not Allawed to use our available coupone , because you use it before and [ Total price is $#{$sum} ]"
+            @paid=$sum 
           end
-        #set in coupone_user table
-        @user =current_user.id
-        UserCoupone.create(user_id: @user,coupone_id:@coupone.id)
+  
         #set order data in database
         Order.create(cart_id: @@cartId,order_status:"Pending",coupone_code:@coupone.code,Address:@address,paid_price: @paid,first_name:@first,last_name:@last,email:@email)
         @order_id=Order.select(:id).last.id    
         #remove cart items and set it in order item table
-        @items=CartItem.where(cart_id: @@cartId)
-        @items.each do|item|
-          @quantityOfitem=item.quantity
-          @productOfitem=item.product_id
-          @idOfitem=item.id
-          OrderItem.create(quantity:@quantityOfitem ,product_id:@productOfitem,order_id:@order_id)
-          CartItem.where(:id => @idOfitem).destroy_all
-          flash[:alert] = "Success Order"
-        end
+        # @items=CartItem.where(cart_id: @@cartId)
+        # @items.each do|item|
+        #   @quantityOfitem=item.quantity
+        #   @productOfitem=item.product_id
+        #   @idOfitem=item.id
+        #   OrderItem.create(quantity:@quantityOfitem ,product_id:@productOfitem,order_id:@order_id)
+        #   CartItem.where(:id => @idOfitem).destroy_all
+        #   flash[:alert] = "Success Order"
+        # end
          
        end
     redirect_to "/carts"
