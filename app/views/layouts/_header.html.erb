@@ -15,10 +15,9 @@
               <a class="navbar-brand logo_h" href="index.html">
                  <!-- <%= image_tag("logo.png") %>  -->
                
-                <!-- <img src="img/logo.png" alt="" /> -->
-                <% if current_user && current_user.image.attached? %>
-										<%= image_tag(current_user.image, class:'nav-link', style:'width:25px')%>
-								<% end %>
+                 <% if current_user && current_user.avatar.attached? %>
+                 <%= image_tag(current_user.avatar, class:'rounded-circle',height:50 , width:50)%>
+             <% end %>
               </a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
