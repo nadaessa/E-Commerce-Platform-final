@@ -9,6 +9,7 @@ class Product < ApplicationRecord
   has_many :orders, through: :order_items
   has_one_attached :image 
   has_many :reviews
+
   def self.search(term, search_term)
     if term
       if search_term == "0"
@@ -20,4 +21,17 @@ class Product < ApplicationRecord
       all
     end
   end
+
+  def self.filter(category_id, brand_id, seller_id)
+    if category_id
+      where('category_id LIKE ?', "%#{category_id}%")
+    elsif brand_id
+      where('brand_id LIKE ?', "%#{brand_id}%")
+    elsif seller_id
+      where('seller_id LIKE ?', "%#{seller_id}%")
+    else
+      all
+    end
+  end
+
 end

@@ -5,16 +5,37 @@ class HomeController < ApplicationController
 
 
     def index
+      #assign cart to user
       if user_signed_in? == true
         @user_id= current_user.id
         @rs=Cart.where(user_id:@user_id).empty?
         if @rs==true
            Cart.create(user_id:@user_id)
         end
-      end  
-        
+      end 
+      #check on coupones
+      @coupone=Coupone.last
+      Time.now.to_date
+      
+      if @coupone.expiration_type =="no_of_usage"
+        @No_of_Usage=@coupone.no_of_usage
+        @count=UserCoupone.where(coupone_id: @coupone.id).count
+        if @count >= @No_of_Usage
+          Coupone.where(id: @coupone.id).update_all(status: "unvailable")
+        end  
+        # render plain:@coupone.status
+      elsif @coupone.expiration_type =="time"
+        @coupone_Time=@coupone.time
+        if Time.now.to_date >= @coupone_Time
+          Coupone.where(id: @coupone.id).update_all(status: "unvailable")
+        end  
+      end
+      
+      #Search
       @categories = Category.all
-      @products = Product.search(params[:term], params[:search_term])
+      #@products = Product.search(params[:term], params[:search_term]
+      @products = Product.filter(params[:category_id], params[:brand_id], params[:seller_id])
+
     end
      
     
@@ -43,27 +64,25 @@ class HomeController < ApplicationController
           @user = current_user.id
           @cartId = Cart.select(:id).where(user_id:@user).last.id
           @productId =params[:id]
+         
           @product_quantity= Product.select(:quantity).where(id:@productId).last.quantity
           if @product_quantity > 0
-              @ArrayProductId=CartItem.select(:product_id).where(cart_id: @cartId).all
-              @ArrayProductId.each do |product|
-                  if (product != @productId)
-                  CartItem.create(quantity:1, cart_id:@cartId , product_id:@productId )
-                  flash[:success] = "added succesfully"
-   
-                  elsif (product == @productId)
-                    flash[:alert] = "increase Q"
-                  end 
-                  # logger.debug @ArrayProductId.inspect
-                  # render plain: @ArrayProductId.inspect  
+              @item=CartItem.where(cart_id: @cartId ,product_id: @productId).empty?
+              if @item ==false
+               #exist in cart
+               @detail_item=CartItem.select(:quantity).where(cart_id: @cartId ,product_id: @productId).last.quantity
+               @quantity=@detail_item+1
+               CartItem.where(cart_id: @cartId ,product_id: @productId).update_all(quantity: @quantity)
+              else
+               #not exit in cart
+              CartItem.create(cart_id: @cartId ,product_id: @productId,quantity: 1)
               end    
               
-          else
-
+           else
             flash[:alert] = "This product #{@productId}is not available" 
           end
       
-          redirect_to '/'
+           redirect_to '/'
       
     end
 

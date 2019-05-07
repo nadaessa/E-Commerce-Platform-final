@@ -10,5 +10,5 @@ class User < ApplicationRecord
    has_many :user_coupones 
    has_many :coupones, through: :user_coupones
    has_many :reviews, dependent: :destroy
- 
+   has_one_attached :avatar
 end
