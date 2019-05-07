@@ -4,28 +4,44 @@ ActiveAdmin.register Coupone do
 #
 
 form do |f|
+   
     f.semantic_errors
     f.inputs "Coupone" do
 
     f.input :coupone_type
     f.input :value
-    f.input :expiration_type
+   
+    f.input :expiration_type, as: :select, class: 'select-type', :input_html => { action: 'show' ,
+    :onchange => "
+    if ($(this).val() == 'time') {
+    $('.time-tab').show();
+    $('.usage-tab').hide();
+    }
+    else {
+    $('.usage-tab').show();
+    $('.time-tab').hide();
+    }
+    "
+    }
+    
+    f.inputs 'time', class: 'time-tab', style: "display: #{f.object.expiration_type == 'time' ? 'block' : 'none'}" do
+    f.input :time, :as => :string
+    end
+    
+    f.inputs 'no_of_usage', class: 'usage-tab', style: "display: #{f.object.expiration_type == 'no_of_usage' ? 'block' : 'none'}" do
+    f.input :no_of_usage, :as => :string
+    end
+    
+ 
+
     f.input :code
     f.input :status
  
- 
-end
+    end
+
  f.actions
 end
 
 permit_params :coupone_type, :value, :expiration_type, :time, :no_of_usage, :code, :status
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
 
 end
