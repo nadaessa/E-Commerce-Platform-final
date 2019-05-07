@@ -25,7 +25,7 @@ form do |f|
     }
     
     f.inputs 'time', class: 'time-tab', style: "display: #{f.object.expiration_type == 'time' ? 'block' : 'none'}" do
-    f.input :time, :as => :string
+    f.input :time,  as: :datepicker, datepicker_options: { dateFormat: "yy/mm/dd" }
     end
     
     f.inputs 'no_of_usage', class: 'usage-tab', style: "display: #{f.object.expiration_type == 'no_of_usage' ? 'block' : 'none'}" do
