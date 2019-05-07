@@ -17,7 +17,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create order" do
     assert_difference('Order.count') do
-      post orders_url, params: { order: { cart_id: @order.cart_id, state: @order.state } }
+      post orders_url, params: { order: { Address: @order.Address, addresss: @order.addresss, cardname: @order.cardname, cardnumber: @order.cardnumber, cart_id: @order.cart_id, city: @order.city, country: @order.country, coupone_code: @order.coupone_code, email: @order.email, emails: @order.emails, first_name: @order.first_name, first_names: @order.first_names, last_name: @order.last_name, last_names: @order.last_names, order_status: @order.order_status, paid_price: @order.paid_price, paymentMethod: @order.paymentMethod, references: @order.references } }
     end
 
     assert_redirected_to order_url(Order.last)
@@ -34,7 +34,7 @@ class OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update order" do
-    patch order_url(@order), params: { order: { cart_id: @order.cart_id, state: @order.state } }
+    patch order_url(@order), params: { order: { Address: @order.Address, addresss: @order.addresss, cardname: @order.cardname, cardnumber: @order.cardnumber, cart_id: @order.cart_id, city: @order.city, country: @order.country, coupone_code: @order.coupone_code, email: @order.email, emails: @order.emails, first_name: @order.first_name, first_names: @order.first_names, last_name: @order.last_name, last_names: @order.last_names, order_status: @order.order_status, paid_price: @order.paid_price, paymentMethod: @order.paymentMethod, references: @order.references } }
     assert_redirected_to order_url(@order)
   end
 

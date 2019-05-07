@@ -17,11 +17,14 @@ class CartsController < InheritedResources::Base
       #-----------------------------
       #check if there is coupone in sysytem
       @@coupone=Coupone.last
+     
+      if @@coupone!=nil
         if @@coupone.status=="available"
         @code=@@coupone.code
        else
         @code="there is no coupone in system now" 
        end
+      end
     end
 
      # increase and decrease quantity inncart page
@@ -57,8 +60,6 @@ class CartsController < InheritedResources::Base
        @lasts=params[:lastnames]
        @emails=params[:emails]
        @addresss=params[:Addresss]
-       @citys=params[:citys]
-       @countrys=params[:countrys]
 
          #billing options
          @paymentMethod=params[:paymentMethod]
@@ -119,7 +120,7 @@ class CartsController < InheritedResources::Base
          @addreses=params[:addressMethod]
          Order.where(:id =>@@order_id).limit(1).update_all(:order_status=>"Pending",:first_name => @first,:last_name => @last ,:Address =>@address,:email=>@email ,:city_id=>@city,:country_id =>@country,:paid_price=>@paid,:paymentMethod=>@paymentMethod ,:cardname=>@cartname,:cardnumber=>@cartnumber) 
          if  @addreses== "shipping"
-          Order.where(:id =>@@order_id).limit(1).update_all(:order_status=>"Pending",:first_names => @firsts,:last_names => @lasts ,:Addresss =>@addresss,:emails=>@emails ,:citys_id=>@citys,:countrys_id =>@countrys,:paid_price=>@paid) 
+          Order.where(:id =>@@order_id).limit(1).update_all(:order_status=>"Pending",:first_names => @firsts,:last_names => @lasts ,:Addresss =>@addresss,:emails=>@emails ,:paid_price=>@paid) 
          end
       
         

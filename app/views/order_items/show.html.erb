@@ -1,23 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Quantity:</strong>
-  <%= @order_item.quantity %>
-</p>
-
-<p>
-  <strong>State:</strong>
-  <%= @order_item.state %>
-</p>
-
-<p>
-  <strong>Cart:</strong>
-  <%= @order_item.cart %>
+  <strong>Order:</strong>
+  <%= @order_item.order %>
 </p>
 
 <p>
   <strong>Product:</strong>
   <%= @order_item.product %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @order_item.quantity %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @order_item.status %>
 </p>
 
 <%= link_to 'Edit', edit_order_item_path(@order_item) %> |

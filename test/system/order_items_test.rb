@@ -14,10 +14,10 @@ class OrderItemsTest < ApplicationSystemTestCase
     visit order_items_url
     click_on "New Order Item"
 
-    fill_in "Cart", with: @order_item.cart_id
+    fill_in "Order", with: @order_item.order_id
     fill_in "Product", with: @order_item.product_id
     fill_in "Quantity", with: @order_item.quantity
-    fill_in "State", with: @order_item.state
+    fill_in "Status", with: @order_item.status
     click_on "Create Order item"
 
     assert_text "Order item was successfully created"
@@ -28,10 +28,10 @@ class OrderItemsTest < ApplicationSystemTestCase
     visit order_items_url
     click_on "Edit", match: :first
 
-    fill_in "Cart", with: @order_item.cart_id
+    fill_in "Order", with: @order_item.order_id
     fill_in "Product", with: @order_item.product_id
     fill_in "Quantity", with: @order_item.quantity
-    fill_in "State", with: @order_item.state
+    fill_in "Status", with: @order_item.status
     click_on "Update Order item"
 
     assert_text "Order item was successfully updated"

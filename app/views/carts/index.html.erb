@@ -193,22 +193,7 @@
                    <%= text_field_tag 'Addresss',placeholder="1234 Main St" %></br>
                    </div>
                    
-                   <div class="row">
-                   <div class="mb-3">
-                   <label>City :</label></br>
-                   <%=select_tag "citys", options_from_collection_for_select(City.order(:name), :id, :name), :prompt=> "Select City" %></br>
-                   </div>
-                   <div class="col-md-4 mb-3">
-                   <label>Zip :</label>
-                   <%= text_field_tag 'zips',"" ,class: 'form-control'%></br>
-                   </div>
-                   </div>
-                   <div class="row">
-                   <div class="mb-3">
-                    <label>Country :</label></br>
-                   <%=select_tag "countrys", options_from_collection_for_select(Country.order(:name), :id, :name), :prompt=> "Select Country" %></br>
-                   </div>
-                   </div>
+                
   
                    </br></br>
                   <%= submit_tag "Checkout" , class: "main_btn" %>

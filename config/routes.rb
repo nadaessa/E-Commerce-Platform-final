@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :order_items
+  resources :orders
   resources :search
   get '/seller/confirm/:id ', to: 'seller#confirm', as: 'confirm'
   get '/seller/deliver/:id ', to: 'seller#deliver', as: 'deliver'
@@ -7,7 +9,6 @@ Rails.application.routes.draw do
   resources :seller
   resources :user_coupones
   resources :coupones
-  resources :order_items
   resources :orders do
     collection do
       get :update_order, :as => :update_order
