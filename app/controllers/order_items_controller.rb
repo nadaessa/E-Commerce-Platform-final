@@ -1,5 +1,9 @@
 class OrderItemsController < InheritedResources::Base
-
+  def show
+    @id=params[:id]
+    @orderItems=OrderItem.where(order_id: @id)
+    
+  end
 
   private
 

@@ -2,6 +2,7 @@ class CartsController < InheritedResources::Base
   @@cartId=0
   @@coupone=nil
   @@order_id=nil
+  @@cart_items=0
 
     def index
       $sum=0

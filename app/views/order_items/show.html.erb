@@ -1,19 +1,28 @@
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Order:</strong>
-  <%= @order_item.order %>
-</p>
 
-<p>
-  <strong>Product:</strong>
-  <%= @order_item.product %>
-</p>
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Product name</th>
+      <th>Product Description</th>
+      <th>Quantity<th>
+      <th>Status</th>
+    </tr>
+  </thead>
 
-<p>
-  <strong>Quantity:</strong>
-  <%= @order_item.quantity %>
-</p>
+  <tbody>
+     <% @orderItems.each do |orderItem| %>
+      <tr>
+      <td><%=orderItem.product.title%></td>
+      <td><%=orderItem.product.description%></td>
+      <td><%=orderItem.quantity%></td>
+      <td><%=orderItem.status%></td>
 
-<%= link_to 'Edit', edit_order_item_path(@order_item) %> |
-<%= link_to 'Back', order_items_path %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
