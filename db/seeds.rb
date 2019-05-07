@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
 
 #  require 'csv'
@@ -27,25 +27,25 @@
 #  end
  
 
-5.times do
-    Brand.create([{
-       name: Faker::Appliance.brand
-    }])
-    end
+# 5.times do
+#     Brand.create([{
+#        name: Faker::Appliance.brand
+#     }])
+#     end
 
- 6.times do
-     Category.create([{
-         name: Faker::Commerce.department(1, true)
-     }])
-     end
+#  6.times do
+#      Category.create([{
+#          name: Faker::Commerce.department(1, true)
+#      }])
+#      end
 
- 6.times do
-     Store.create([{
-         name: Faker::Commerce.department,
-         summary: Faker::Lorem.sentence,
-         user_id: 1
-     }])
-     end
+#  6.times do
+#      Store.create([{
+#          name: Faker::Commerce.department,
+#          summary: Faker::Lorem.sentence,
+#          user_id: 1
+#      }])
+#      end
 
 
 # 5.times do
