@@ -107,18 +107,18 @@ class CartsController < InheritedResources::Base
           end
   
         #set order data in database
-        Order.create(cart_id: @@cartId,order_status:"Pending",coupone_code:@coupone.code,Address:@address,paid_price: @paid,first_name:@first,last_name:@last,email:@email)
+        Order.create(order_status:"Pending",cart_id: @@cartId,coupone_code:@coupone.code,Address:@address,paid_price: @paid,first_name:@first,last_name:@last,email:@email)
         @order_id=Order.select(:id).last.id    
         #remove cart items and set it in order item table
-        # @items=CartItem.where(cart_id: @@cartId)
-        # @items.each do|item|
-        #   @quantityOfitem=item.quantity
-        #   @productOfitem=item.product_id
-        #   @idOfitem=item.id
-        #   OrderItem.create(quantity:@quantityOfitem ,product_id:@productOfitem,order_id:@order_id)
-        #   CartItem.where(:id => @idOfitem).destroy_all
-        #   flash[:alert] = "Success Order"
-        # end
+        @items=CartItem.where(cart_id: @@cartId)
+        @items.each do|item|
+          @quantityOfitem=item.quantity
+          @productOfitem=item.product_id
+          @idOfitem=item.id
+          OrderItem.create(quantity:@quantityOfitem ,product_id:@productOfitem,order_id:@order_id,status:"Pending")
+          CartItem.where(:id => @idOfitem).destroy_all
+          flash[:alert] = "Success Order"
+        end
          
        end
     redirect_to "/carts"
