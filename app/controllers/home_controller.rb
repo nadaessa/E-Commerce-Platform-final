@@ -30,9 +30,12 @@ class HomeController < ApplicationController
           Coupone.where(id: @coupone.id).update_all(status: "unvailable")
         end  
       end
-        
+      
+      #Search
       @categories = Category.all
-      @products = Product.search(params[:term], params[:search_term])
+      #@products = Product.search(params[:term], params[:search_term]
+      @products = Product.filter(params[:category_id], params[:brand_id], params[:seller_id])
+
     end
      
     
