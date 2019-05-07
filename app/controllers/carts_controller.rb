@@ -79,13 +79,12 @@ class CartsController < InheritedResources::Base
  
           @coupone=Coupone.last
           if @coupone.status=="available"
-          
               if @coupone.coupone_type=="fixed"
                   @paid =$sum-@coupone.value
                   flash[:alert] = "Total price is $#{$sum} but after using coupone with Discounted $#{@coupone.value} 
                   You paid $#{@paid} "
               elsif  @coupone.coupone_type=="discount" 
-                @paid=$sum-($sum*@couponee.value/100)
+                @paid=$sum-($sum*(@coupone.value)/100)
                 flash[:alert] = "Total price is $#{$sum} but after using coupone with Discounted #{@coupone.value}%
                 You paid $#{@paid} "
               else
