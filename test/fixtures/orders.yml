@@ -5,39 +5,17 @@ one:
   order_status: 1
   coupone_code: MyString
   Address: MyString
-  country: MyString
-  references: MyString
-  city: MyString
-  references: MyString
   paid_price: 1
   first_name: MyString
   last_name: MyString
   email: MyString
-  paymentMethod: MyString
-  cardname: MyString
-  cardnumber: MyString
-  first_names: MyString
-  last_names: MyString
-  emails: MyString
-  addresss: MyString
 
 two:
   cart: two
   order_status: 1
   coupone_code: MyString
   Address: MyString
-  country: MyString
-  references: MyString
-  city: MyString
-  references: MyString
   paid_price: 1
   first_name: MyString
   last_name: MyString
   email: MyString
-  paymentMethod: MyString
-  cardname: MyString
-  cardnumber: MyString
-  first_names: MyString
-  last_names: MyString
-  emails: MyString
-  addresss: MyString

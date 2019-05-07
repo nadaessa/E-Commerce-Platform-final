@@ -78,21 +78,6 @@
               <h4  style="color:red;">$<%= @subtotal %></h4>
               </td>
             </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td colspan=2>
-                  <div class="cupon_text">
-                   
-                  <%= form_tag  url_for(:controller => 'carts', :action => 'take_coupone_code'), :method => 'get' do %>
-                    <%= text_field_tag 'coupone_code'  %>
-                    <%= submit_tag "Apply" ,:class=>"btn btn-success" %>  
-                  <% end %>
-                  <p style="color:blue;"> Current Coupone code is : <%=@code %></p>
-                  
-                </div>
-              </td>
-
 
             <tr class="out_button_area">
               <td></td>
@@ -119,83 +104,6 @@
                     <label>Your Address :</label>
                     <%= text_field_tag 'Address',placeholder="1234 Main St" %></br>
                     </div>
-                    
-                    <div class="row">
-                    <div class="mb-3">
-                    <label>City :</label></br>
-                    <%=select_tag "city", options_from_collection_for_select(City.order(:name), :id, :name), :prompt=> "Select City" %></br>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                    <label>Zip :</label>
-                    <%= text_field_tag 'zip',"" ,class: 'form-control'%></br>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <div class="mb-3">
-                     <label>Country :</label></br>
-                    <%=select_tag "country", options_from_collection_for_select(Country.order(:name), :id, :name), :prompt=> "Select Country" %></br>
-                    
-                    </div>
-                    </div>
-                    
-                    <%=radio_button_tag 'addressMethod', 'billing'%> Shipping address is the same as my billing address<br> 
-                     <%=radio_button_tag 'addressMethod', 'shipping'%>Provide anther address
-                    
-                     <hr class="mb-4">
-
-                     <h4 class="mb-3">Payment</h4>
-         
-                     <div class="d-block my-3">
-
-                     <div class="custom-control custom-radio">
-                     <%=radio_button_tag 'paymentMethod', 'Credit card'%>Credit card
-                     </div>
-                     <div class="custom-control custom-radio">
-                     <%=radio_button_tag 'paymentMethod', 'Debit card'%>Debit card
-                     </div>
-                     <div class="custom-control custom-radio">
-                     <%=radio_button_tag 'paymentMethod', 'PayPal'%>PayPal
-                     </div>
-                     </div>
-
-                   
-                     <div class="col-md-6 mb-3">
-                     <label>Name on card :</label>
-                     <%= text_field_tag 'cardname',"" ,class: 'form-control'%></br>
-                     </div>
-               
-                     <div class="col-md-6 mb-3">
-                     <label>Credit card number:</label>
-                     <%= text_field_tag 'cardnumber',"" ,class: 'form-control'%></br>
-                     </div>
-                   </br>
-                   </div>
-                </div>
-
-                <div class="checkout_btn_inner">
-
-                <h3 class="mb-3">Shipping address</h3 >
-                 <div class="container">
-                   <div class="col-md-6 mb-3">
-                   <label>First Name :</label>
-                   <%= text_field_tag 'firstnames',"" ,class: 'form-control'%></br>
-                    </div>
-                    <div class="col-md-6 mb-3"> 
-                   <label>Last Name :</label>
-                   <%= text_field_tag 'lastnames',"" ,class: 'form-control'%></br>
-                   </div>
-                   <div class="mb-3">
-                   <label>Email :</label>
-                   <%= email_field_tag 'emails' ,placeholder= "you@example.com",class: 'form-control', style:"width:200px;"%></br>
-                   </div>
-                   <div class="mb-3">
-                   <label>Your Address :</label>
-                   <%= text_field_tag 'Addresss',placeholder="1234 Main St" %></br>
-                   </div>
-                   
-                
-  
-                   </br></br>
                   <%= submit_tag "Checkout" , class: "main_btn" %>
   
                   </br>

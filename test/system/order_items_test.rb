@@ -17,7 +17,6 @@ class OrderItemsTest < ApplicationSystemTestCase
     fill_in "Order", with: @order_item.order_id
     fill_in "Product", with: @order_item.product_id
     fill_in "Quantity", with: @order_item.quantity
-    fill_in "Status", with: @order_item.status
     click_on "Create Order item"
 
     assert_text "Order item was successfully created"
@@ -31,7 +30,6 @@ class OrderItemsTest < ApplicationSystemTestCase
     fill_in "Order", with: @order_item.order_id
     fill_in "Product", with: @order_item.product_id
     fill_in "Quantity", with: @order_item.quantity
-    fill_in "Status", with: @order_item.status
     click_on "Update Order item"
 
     assert_text "Order item was successfully updated"
