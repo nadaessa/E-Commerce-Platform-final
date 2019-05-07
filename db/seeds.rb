@@ -26,6 +26,19 @@ AdminUser.create!(email: 'admin@example.com', password: 'password', password_con
 #    end
 #  end
  
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+#5.times do
+    #Brand.create([{
+   #     name: Faker::Appliance.brand
+   # }])
+   # end
+
+
+# 6.times do
+#     Category.create([{
+#         name: Faker::Commerce.department(1, true)
+#     }])
+#     end
 
 # 5.times do
 #     Brand.create([{
@@ -48,6 +61,17 @@ AdminUser.create!(email: 'admin@example.com', password: 'password', password_con
 #      end
 
 
+5.times do
+    Coupone.create([{
+        coupone_type: Faker::Number.digit
+        value: Faker::Number.number(3)
+        expiration_type: 1
+        time: Faker::Time.forward(23, :morning)
+        no_of_usage: Faker::Number.number(1)
+        code: Faker::Number.number(5)
+        status: 1
+    }])
+    end
 # 5.times do
     
 #     Product.create([{

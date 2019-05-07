@@ -33,7 +33,7 @@ class HomeController < ApplicationController
       
       #Search
       @categories = Category.all
-      #@products = Product.search(params[:term], params[:search_term]
+      @products = Product.search(params[:term], params[:search_term])
       @products = Product.filter(params[:category_id], params[:brand_id], params[:seller_id])
 
     end
