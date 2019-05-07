@@ -33,6 +33,7 @@ AdminUser.create!(email: 'admin@example.com', password: 'password', password_con
    # }])
    # end
 
+
 # 6.times do
 #     Category.create([{
 #         name: Faker::Commerce.department(1, true)
@@ -48,6 +49,17 @@ AdminUser.create!(email: 'admin@example.com', password: 'password', password_con
 #     end
 
 
+5.times do
+    Coupone.create([{
+        coupone_type: Faker::Number.digit
+        value: Faker::Number.number(3)
+        expiration_type: 1
+        time: Faker::Time.forward(23, :morning)
+        no_of_usage: Faker::Number.number(1)
+        code: Faker::Number.number(5)
+        status: 1
+    }])
+    end
 # 5.times do
 #     store_id = 0
 #     Product.create([{
