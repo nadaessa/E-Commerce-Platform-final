@@ -20,6 +20,7 @@
               <th scope="col">Price</th>
               <th scope="col">Quantity</th>
               <th scope="col">Total</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -60,7 +61,14 @@
               <td>
                 <h5>$<%= cartItem.quantity * cartItem.product.price%></h5>
               </td>
-            </tr>
+
+              <td>
+              <%= form_tag  url_for(:controller => 'carts', :action => 'cart_delete'), :method => 'get' do %>
+                <%= hidden_field_tag 'id' , cartItem.product.id%>
+                <%= submit_tag "Remove" ,:class=>"btn btn-danger" ,data: { confirm: 'Are you sure?' }%>  
+              <% end %>
+              </td>
+              </tr>
             <% end %>
             <tr class="bottom_button" rowspan=2>
               <td></td>

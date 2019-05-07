@@ -144,8 +144,16 @@ class CartsController < InheritedResources::Base
       Order.create(order_status:"Pending",cart_id:@@cartId ,coupone_code:"#{@coupone}")
       @@order_id=Order.last.id
       
-      #  redirect_to "/carts"
+       redirect_to "/carts"
     end  
+
+#------------------------------------------------------------------------
+#delete from cart
+    def cart_delete
+      @product_id=params[:id]
+      CartItem.where(:product_id => @product_id,cart_id: @@cartId).destroy_all
+       redirect_to "/carts"
+    end      
 
 
     private
