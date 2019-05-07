@@ -5,13 +5,31 @@ class HomeController < ApplicationController
 
 
     def index
+      #assign cart to user
       if user_signed_in? == true
         @user_id= current_user.id
         @rs=Cart.where(user_id:@user_id).empty?
         if @rs==true
            Cart.create(user_id:@user_id)
         end
-      end  
+      end 
+      #check on coupones
+      @coupone=Coupone.last
+      Time.now.to_date
+      
+      if @coupone.expiration_type =="no_of_usage"
+        @No_of_Usage=@coupone.no_of_usage
+        @count=UserCoupone.where(coupone_id: @coupone.id).count
+        if @count >= @No_of_Usage
+          Coupone.where(id: @coupone.id).update_all(status: "unvailable")
+        end  
+        # render plain:@coupone.status
+      elsif @coupone.expiration_type =="time"
+        @coupone_Time=@coupone.time
+        if Time.now.to_date >= @coupone_Time
+          Coupone.where(id: @coupone.id).update_all(status: "unvailable")
+        end  
+      end
         
       @categories = Category.all
       @products = Product.search(params[:term], params[:search_term])
