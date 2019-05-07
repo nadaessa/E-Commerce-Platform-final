@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_05_07_002021) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -47,7 +47,11 @@ ActiveRecord::Schema.define(version: 2019_05_07_002021) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+<<<<<<< HEAD
+  create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+=======
   create_table "admin_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+>>>>>>> f79479c229b3f903c67ebaae07df9b8619c7c4c6
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -88,20 +92,28 @@ ActiveRecord::Schema.define(version: 2019_05_07_002021) do
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
+  create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+=======
   create_table "cities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+>>>>>>> f79479c229b3f903c67ebaae07df9b8619c7c4c6
     t.string "name"
     t.integer "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "countries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "countries", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+<<<<<<< HEAD
+  create_table "coupones", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+=======
   create_table "coupones", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+>>>>>>> f79479c229b3f903c67ebaae07df9b8619c7c4c6
     t.integer "coupone_type"
     t.integer "value"
     t.integer "expiration_type"
@@ -131,6 +143,14 @@ ActiveRecord::Schema.define(version: 2019_05_07_002021) do
     t.datetime "updated_at", null: false
     t.string "coupone_code"
     t.text "Address"
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    t.string "Country"
+=======
+>>>>>>> f79479c229b3f903c67ebaae07df9b8619c7c4c6
+    t.string "Name"
+>>>>>>> cfa6f431a37d820adc7713fe4ac5115fe0304b82
     t.integer "country_id"
     t.integer "city_id"
     t.integer "paid_price"
@@ -166,7 +186,20 @@ ActiveRecord::Schema.define(version: 2019_05_07_002021) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
+<<<<<<< HEAD
+  create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.integer "rating"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "product_id"
+  end
+
+  create_table "stores", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+=======
   create_table "stores", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+>>>>>>> f79479c229b3f903c67ebaae07df9b8619c7c4c6
     t.string "name"
     t.text "summary"
     t.bigint "user_id"

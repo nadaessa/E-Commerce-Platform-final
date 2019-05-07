@@ -9,5 +9,6 @@ class User < ApplicationRecord
    has_one :cart
    has_many :user_coupones 
    has_many :coupones, through: :user_coupones
+   has_many :reviews, dependent: :destroy
  
 end

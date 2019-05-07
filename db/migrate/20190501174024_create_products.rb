@@ -5,7 +5,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.text :description
       t.float :price
       t.integer :quantity
-      t.string :image
+
       t.references :store, foreign_key: true
       t.references :category, foreign_key: true
       t.references :brand, foreign_key: true
