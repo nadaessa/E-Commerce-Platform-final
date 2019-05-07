@@ -4,10 +4,8 @@ one:
   order: one
   product: one
   quantity: 1
-  status: 1
 
 two:
   order: two
   product: two
   quantity: 1
-  status: 1

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_07_103853) do
+ActiveRecord::Schema.define(version: 2019_05_07_135835) do
 
   create_table "active_admin_comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "namespace"
@@ -117,7 +117,6 @@ ActiveRecord::Schema.define(version: 2019_05_07_103853) do
     t.bigint "order_id"
     t.bigint "product_id"
     t.integer "quantity"
-    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_order_items_on_order_id"
@@ -129,20 +128,10 @@ ActiveRecord::Schema.define(version: 2019_05_07_103853) do
     t.integer "order_status"
     t.string "coupone_code"
     t.string "Address"
-    t.string "country"
-    t.string "references"
-    t.string "city"
     t.integer "paid_price"
     t.string "first_name"
     t.string "last_name"
     t.string "email"
-    t.string "paymentMethod"
-    t.string "cardname"
-    t.string "cardnumber"
-    t.string "first_names"
-    t.string "last_names"
-    t.string "emails"
-    t.string "addresss"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cart_id"], name: "index_orders_on_cart_id"

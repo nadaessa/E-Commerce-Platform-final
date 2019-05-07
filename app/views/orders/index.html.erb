@@ -9,21 +9,10 @@
       <th>Order status</th>
       <th>Coupone code</th>
       <th>Address</th>
-      <th>Country</th>
-      <th>References</th>
-      <th>City</th>
-      <th>References</th>
       <th>Paid price</th>
       <th>First name</th>
       <th>Last name</th>
       <th>Email</th>
-      <th>Paymentmethod</th>
-      <th>Cardname</th>
-      <th>Cardnumber</th>
-      <th>First names</th>
-      <th>Last names</th>
-      <th>Emails</th>
-      <th>Addresss</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -35,21 +24,10 @@
         <td><%= order.order_status %></td>
         <td><%= order.coupone_code %></td>
         <td><%= order.Address %></td>
-        <td><%= order.country %></td>
-        <td><%= order.references %></td>
-        <td><%= order.city %></td>
-        <td><%= order.references %></td>
         <td><%= order.paid_price %></td>
         <td><%= order.first_name %></td>
         <td><%= order.last_name %></td>
         <td><%= order.email %></td>
-        <td><%= order.paymentMethod %></td>
-        <td><%= order.cardname %></td>
-        <td><%= order.cardnumber %></td>
-        <td><%= order.first_names %></td>
-        <td><%= order.last_names %></td>
-        <td><%= order.emails %></td>
-        <td><%= order.addresss %></td>
         <td><%= link_to 'Show', order %></td>
         <td><%= link_to 'Edit', edit_order_path(order) %></td>
         <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>

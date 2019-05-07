@@ -17,7 +17,7 @@ class OrderItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create order_item" do
     assert_difference('OrderItem.count') do
-      post order_items_url, params: { order_item: { order_id: @order_item.order_id, product_id: @order_item.product_id, quantity: @order_item.quantity, status: @order_item.status } }
+      post order_items_url, params: { order_item: { order_id: @order_item.order_id, product_id: @order_item.product_id, quantity: @order_item.quantity } }
     end
 
     assert_redirected_to order_item_url(OrderItem.last)
@@ -34,7 +34,7 @@ class OrderItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update order_item" do
-    patch order_item_url(@order_item), params: { order_item: { order_id: @order_item.order_id, product_id: @order_item.product_id, quantity: @order_item.quantity, status: @order_item.status } }
+    patch order_item_url(@order_item), params: { order_item: { order_id: @order_item.order_id, product_id: @order_item.product_id, quantity: @order_item.quantity } }
     assert_redirected_to order_item_url(@order_item)
   end
 
