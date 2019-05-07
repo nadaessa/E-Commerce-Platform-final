@@ -27,42 +27,78 @@
 #  end
  
 
-5.times do
-    Brand.create([{
-       name: Faker::Appliance.brand
-    }])
-    end
+# 5.times do
+#     Brand.create([{
+#        name: Faker::Appliance.brand
+#     }])
+#     end
 
- 6.times do
-     Category.create([{
-         name: Faker::Commerce.department(1, true)
-     }])
-     end
+#  6.times do
+#      Category.create([{
+#          name: Faker::Commerce.department(1, true)
+#      }])
+#      end
 
- 6.times do
-     Store.create([{
-         name: Faker::Commerce.department,
-         summary: Faker::Lorem.sentence,
-         user_id: 1
-     }])
-     end
+#  6.times do
+#      Store.create([{
+#          name: Faker::Commerce.department,
+#          summary: Faker::Lorem.sentence,
+#          user_id: 1
+#      }])
+#      end
 
 
 # 5.times do
-#     store_id = 0
+    
 #     Product.create([{
 #         title: Faker::Commerce.product_name,
 #         description: Faker::Lorem.sentence,
 #         price: Faker::Commerce.price,
 #         quantity: rand(1..60),
-#         image: Faker::LoremPixel.image("730x411"),
-#         store_id: store_id + 1,
+#         store_id: 1,
 #         category_id: 2,
 #         brand_id: 3,
 #         user_id: 1
 #     }])
     
 # end  
+
+
+
+    
+    # Order.create(
+    #  cart_id:1,
+    #  order_status:0,
+    #  coupone_code:55,
+    #  Address:"ahmed street",
+    #  paid_price: 55,
+    #  first_name:"asmaa",
+    #  last_name:"saeed",
+    #  email:"asmaa@yahoo.com",
+    # )
+    Order.create(
+        cart_id:1,
+        order_status:1,
+        coupone_code:55,
+        Address:"green street",
+        paid_price: 55,
+        first_name:"rawda",
+        last_name:"sherif",
+        email:"rawda@yahoo.com",
+       )
+
+       Order.create(
+        cart_id:1,
+        order_status:2,
+        coupone_code:55,
+        Address:"gleem street",
+        paid_price: 55,
+        first_name:"sarah",
+        last_name:"mohamed",
+        email:"sarah@yahoo.com",
+       )
+    
+    
 
 
 # -------------------------
