@@ -34,15 +34,13 @@
 
                       <% if can? :manage, Cart %>
                       <li class="nav-item submenu dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                          aria-expanded="false">CART</a>
+                      <%= link_to('Cart', '/carts', class: 'nav-link')   %>
                       </li>
                       <% end %>
 
                       <% if can? :manage, Order %>
                       <li class="nav-item submenu dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                          aria-expanded="false">ORDER</a>
+                      <%= link_to('Orders', '/order_items', class: 'nav-link')   %>
                       </li>
                       <% end %>
                       
