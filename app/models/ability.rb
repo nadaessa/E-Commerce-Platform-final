@@ -4,9 +4,7 @@ class Ability
   def initialize(user)
 
     user ||= User.new # guest user (not logged in)
-    if user.admin?
-      can :manage, :all
-    elsif user.seller?
+    if user.seller?
       can :manage, Product
       can :manage, '/seller'
     elsif user.buyer?

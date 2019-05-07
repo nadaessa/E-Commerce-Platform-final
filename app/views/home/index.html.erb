@@ -49,6 +49,7 @@
   </div>
   <!------------------------ /SEARCH BAR ------------------------------->
 
+
  
   <!--================ Inspired Product Area =================-->
   <section class="inspired_product_area section_gap_bottom_custom">
@@ -83,8 +84,6 @@
             <div class="latest_product_inner">
 
 
-
-
               <div class="row">
           <% @products.each do |product| %>
         <div class="col-lg-4 col-md-6">
@@ -92,20 +91,18 @@
             <div class="product-img">
                 <!-- <%= image_tag("product/inspired-product/i1.jpg") %>  -->
                
-                <%= image_tag(product.image, class:'img-fluid w-100', style:'width:300px ; height:250px') if product.image.attached?  %>
+                <%= image_tag(product.image, class:'img-fluid w-100', style:'width:600px ; height:250px') if product.image.attached?  %>
               <!-- <img class="img-fluid w-100" src="img/product/inspired-product/i1.jpg" alt="" /> -->
               <div class="p_icon">
                 <%= link_to product do %>
                   <i class="ti-eye"></i>
                 <% end %>
               
-                <a href="#">
-                  <i class="ti-heart"></i>
-                </a>
                 
-                    <%= button_to 'addItem', addItem_path(product), method: :get  %>
-                  <!-- <i class="ti-shopping-cart"></i> -->
-                
+                <%= link_to addItem_path(product), method: :get do  %>
+                    <!-- <%= button_to 'addItem', addItem_path(product), method: :get  %> -->
+                  <i class="ti-shopping-cart"></i>
+                  <% end %>
               </div>
             </div>
             <div class="product-btm">
@@ -121,101 +118,43 @@
         </div>
         <% end %>
        </div>
-
-
-
-
-            </div>
-          </div>
+      </div>
+     </div>
     
-    
-    
-    
+<!=========================================== FILTER BAR ==============================================> 
+
           <div class="col-lg-3">
-            
             <div class="left_sidebar_area">
+
               <aside class="left_widgets p_filter_widgets">
                 <div class="l_w_title">
-                  <h3>Browse Categories</h3>
+                  <h3>Filter Products</h3>
                 </div>
                 <div class="widgets_inner">
-                  <ul class="list">
-                      <% @categories.each do |category| %>
-                    <li>
-                      <%= link_to categories_path do %>
-                  
-                      <%= category.name %>
-                      <% end %>
-                    </li>
-                    <% end %>
-                  </ul>
+                <%= form_tag(url_for(:controller => 'home', :action => 'index'), method: :get) do %>
+
+                  <div class="field">
+                    <%= label_tag :category_id %><br>
+                    <%=select_tag "category_id", options_from_collection_for_select(Category.all, :id, :name), include_blank: true%></br>
+                  </div><br><br>
+            
+                  <div class="field">
+                    <%= label_tag :brand_id %><br>
+                    <%=select_tag "brand_id", options_from_collection_for_select(Brand.all, :id, :name), include_blank: true%></br>
+                  </div><br><br>
+            
+                  <div class="field">
+                    <%= label_tag :seller_id %><br>
+                    <%=select_tag "seller_id", options_from_collection_for_select(User.where(role: '1'), :id, :name), include_blank: true%></br>
+                  </div><br><br>
+            
+                  <%= submit_tag 'Filter', name: nil %>
+                <% end %>
                 </div>
               </aside>
     
-              <aside class="left_widgets p_filter_widgets">
-                <div class="l_w_title">
-                  <h3>Product Brand</h3>
-                </div>
-                <div class="widgets_inner">
-                  <ul class="list">
-                    <li>
-                      <a href="#">Apple</a>
-                    </li>
-                    <li>
-                      <a href="#">Asus</a>
-                    </li>
-                    <li class="active">
-                      <a href="#">Gionee</a>
-                    </li>
-                    <li>
-                      <a href="#">Micromax</a>
-                    </li>
-                    <li>
-                      <a href="#">Samsung</a>
-                    </li>
-                  </ul>
-                </div>
-              </aside>
-    
-              <aside class="left_widgets p_filter_widgets">
-                <div class="l_w_title">
-                  <h3>Color Filter</h3>
-                </div>
-                <div class="widgets_inner">
-                  <ul class="list">
-                    <li>
-                      <a href="#">Black</a>
-                    </li>
-                    <li>
-                      <a href="#">Black Leather</a>
-                    </li>
-                    <li class="active">
-                      <a href="#">Black with red</a>
-                    </li>
-                    <li>
-                      <a href="#">Gold</a>
-                    </li>
-                    <li>
-                      <a href="#">Spacegrey</a>
-                    </li>
-                  </ul>
-                </div>
-              </aside>
-    
-              <aside class="left_widgets p_filter_widgets">
-                <div class="l_w_title">
-                  <h3>Price Filter</h3>
-                </div>
-                <div class="widgets_inner">
-                  <div class="range_item">
-                    <div id="slider-range"></div>
-                    <div class="">
-                      <label for="amount">Price : </label>
-                      <input type="text" id="amount" readonly />
-                    </div>
-                  </div>
-                </div>
-              </aside>
+<!=========================================== FILTER BAR ==============================================> 
+
             </div>
           </div>
         </div>
