@@ -8,25 +8,25 @@
 # AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
 
- require 'csv'
+#  require 'csv'
 
- puts "Importing countries..."
- CSV.foreach(Rails.root.join("countries.csv"), headers: true) do |row|
-   Country.create! do |country|
-     country.id = row[0]
-     country.name = row[1]
-   end
- end
+#  puts "Importing countries..."
+#  CSV.foreach(Rails.root.join("countries.csv"), headers: true) do |row|
+#    Country.create! do |country|
+#      country.id = row[0]
+#      country.name = row[1]
+#    end
+#  end
  
- puts "Importing states..."
- CSV.foreach(Rails.root.join("cities.csv"), headers: true) do |row|
-   City.create! do |city|
-     city.name = row[0]
-     city.country_id = row[2]
-   end
- end
+#  puts "Importing states..."
+#  CSV.foreach(Rails.root.join("cities.csv"), headers: true) do |row|
+#    City.create! do |city|
+#      city.name = row[0]
+#      city.country_id = row[2]
+#    end
+#  end
  
-
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 #5.times do
     #Brand.create([{
    #     name: Faker::Appliance.brand
