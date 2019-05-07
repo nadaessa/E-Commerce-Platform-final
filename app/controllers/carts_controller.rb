@@ -42,10 +42,27 @@ class CartsController < InheritedResources::Base
 #--------------------------------------------------------------------------------
     def do_checkout
       #order_form data
-      @name=params[:name]
+        #billing address
+      @first=params[:firstname]
+      @last=params[:lastname]
+      @email=params[:email]
       @address=params[:Address]
       @city=params[:city]
       @country=params[:country] 
+
+        #billing address
+       @firsts=params[:firstnames]
+       @lasts=params[:lastnames]
+       @emails=params[:emails]
+       @addresss=params[:Addresss]
+       @citys=params[:citys]
+       @countrys=params[:countrys]
+
+         #billing options
+         @paymentMethod=params[:paymentMethod]
+         @cartname=params[:cardname]
+         @cartnumber=params[:cardnumber]
+
 
       #check quantity in product table
       cheak= Array.new
@@ -91,7 +108,12 @@ class CartsController < InheritedResources::Base
         end
          
          #set order data in database
-        Order.where(:id =>@@order_id).limit(1).update_all(:order_status=>"Pending",:Name => @name ,:Address =>@address,:city_id=>@city,:country_id =>@country,:paid_price=>@paid) 
+         @addreses=params[:addressMethod]
+         Order.where(:id =>@@order_id).limit(1).update_all(:order_status=>"Pending",:first_name => @first,:last_name => @last ,:Address =>@address,:email=>@email ,:city_id=>@city,:country_id =>@country,:paid_price=>@paid,:paymentMethod=>@paymentMethod ,:cardname=>@cartname,:cardnumber=>@cartnumber) 
+         if  @addreses== "shipping"
+          Order.where(:id =>@@order_id).limit(1).update_all(:order_status=>"Pending",:first_names => @firsts,:last_names => @lasts ,:Addresss =>@addresss,:emails=>@emails ,:citys_id=>@citys,:countrys_id =>@countrys,:paid_price=>@paid) 
+         end
+      
         
         #remove cart items and set it in order item table
         @items=CartItem.where(cart_id: @@cartId)
