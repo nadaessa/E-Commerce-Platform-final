@@ -45,7 +45,7 @@
     <% @confirmed_items.each do |confirmed_item| %>
       <tr>
         <td><%= confirmed_item.quantity %></td>
-        <td><%= confirmed_item.state %></td>
+        <td><%= confirmed_item.status %></td>
         <td><%= confirmed_item.order.id %></td>
         <td><%= confirmed_item.product.title %></td>
         <td><%= button_to 'Delivered', deliver_path(confirmed_item), method: :get %></td>
@@ -55,5 +55,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New Order Item', new_order_item_path %>

@@ -26,7 +26,6 @@
 #    end
 #  end
  
-<<<<<<< HEAD
 
 5.times do
     Brand.create([{
@@ -47,28 +46,6 @@
          user_id: 1
      }])
      end
-=======
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
-#5.times do
-    #Brand.create([{
-   #     name: Faker::Appliance.brand
-   # }])
-   # end
-
-# 6.times do
-#     Category.create([{
-#         name: Faker::Commerce.department(1, true)
-#     }])
-#     end
-
-# 6.times do
-#     Store.create([{
-#         name: Faker::Commerce.department,
-#         summary: Faker::Lorem.sentence,
-#         user_id: 1
-#     }])
-#     end
->>>>>>> 616355a1d2e0aab0473d774e3392f26dd7f9f9ff
 
 
 # 5.times do
