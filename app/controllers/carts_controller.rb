@@ -94,8 +94,10 @@ class CartsController < InheritedResources::Base
               end
 
           end
-  
-         #set order data in database
+        #set in coupone_user table
+        @user =current_user.id
+        UserCoupone.create(user_id: @user,coupone_id:@coupone.id)
+        #set order data in database
         Order.create(cart_id: @@cartId,order_status:"Pending",coupone_code:@coupone.code,Address:@address,paid_price: @paid,first_name:@first,last_name:@last,email:@email)
         @order_id=Order.select(:id).last.id    
         #remove cart items and set it in order item table
