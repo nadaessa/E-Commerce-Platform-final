@@ -8,7 +8,8 @@ class CartsController < InheritedResources::Base
       @user =current_user.id
       @@cartId=Cart.select(:id).where(user_id: @user).last.id
       @cartItems=CartItem.select(:quantity,:product_id).where(cart_id: @@cartId)
-      @@order_id=Order.where(cart_id: @@cartId).last.id
+      @rs=Order.where(cart_id: @@cartId).empty?
+      # @@order_id=Order.where(cart_id: @@cartId).last.id
       #-----------------------------
       # get subtotal price  
       @@cart_items=@cartItems
@@ -41,6 +42,7 @@ class CartsController < InheritedResources::Base
     end
 #--------------------------------------------------------------------------------
     def do_checkout
+
       #order_form data
         #billing address
       @first=params[:firstname]
@@ -108,6 +110,12 @@ class CartsController < InheritedResources::Base
         end
          
          #set order data in database
+           #check if there is order or not 
+         @@order_id=Order.where(cart_id: @@cartId).empty?
+         if @@order_id==true
+          Order.create(cart_id:@@cartId)
+         end
+
          @addreses=params[:addressMethod]
          Order.where(:id =>@@order_id).limit(1).update_all(:order_status=>"Pending",:first_name => @first,:last_name => @last ,:Address =>@address,:email=>@email ,:city_id=>@city,:country_id =>@country,:paid_price=>@paid,:paymentMethod=>@paymentMethod ,:cardname=>@cartname,:cardnumber=>@cartnumber) 
          if  @addreses== "shipping"

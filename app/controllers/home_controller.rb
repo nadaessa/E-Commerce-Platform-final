@@ -5,6 +5,14 @@ class HomeController < ApplicationController
 
 
     def index
+      if user_signed_in? == true
+        @user_id= current_user.id
+        @rs=Cart.where(user_id:@user_id).empty?
+        if @rs==true
+           Cart.create(user_id:@user_id)
+        end
+      end  
+        
       @categories = Category.all
       @products = Product.search(params[:term], params[:search_term])
     end
