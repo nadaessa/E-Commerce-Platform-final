@@ -9,6 +9,7 @@
       <th> Buyer Name</th>
       <th> Buyer Email</th>
       <th> Coupone Code </th>
+      <th> Paid Price</th>
       <th> Order Status</th>
       <th></th>
     </tr>
@@ -21,6 +22,7 @@
         <td><%= order.first_name %> </td>
         <td><%= order.email %></td>
         <td><%= order.coupone_code %></td>
+        <td><%= order.paid_price %></td>
         <td><%= order.order_status %></td> 
         <td><%= link_to 'More Details', order_item_path(:id => order.id) %><td>  
       </tr>
