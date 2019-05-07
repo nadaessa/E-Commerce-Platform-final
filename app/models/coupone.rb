@@ -1,5 +1,12 @@
 class Coupone < ApplicationRecord
 
+    enum coupone_type: [:fixed, :discount]
+    enum expiration_type: [:time, :no_of_usage]
+    enum status: [:available, :unvailable]
+
+    has_many :user_coupones 
+    has_many :users, through: :user_coupones
+
     validates :coupone_type, presence: true, format: { with: /\A[a-zA-Z]+\z/,
     message: "you must select an option" }
     validates :value, presence: true
@@ -8,12 +15,5 @@ class Coupone < ApplicationRecord
     
     validates :code, presence: true
     validates :status, presence: true
-
-    enum coupone_type: [:fixed, :discount]
-    enum expiration_type: [:time, :no_of_usage]
-    enum status: [:available, :unvailable]
-
-    has_many :user_coupones 
-    has_many :users, through: :user_coupones
 
 end
