@@ -92,20 +92,18 @@
             <div class="product-img">
                 <!-- <%= image_tag("product/inspired-product/i1.jpg") %>  -->
                
-                <%= image_tag(product.image, class:'img-fluid w-100', style:'width:300px ; height:250px') if product.image.attached?  %>
+                <%= image_tag(product.image, class:'img-fluid w-100', style:'width:600px ; height:250px') if product.image.attached?  %>
               <!-- <img class="img-fluid w-100" src="img/product/inspired-product/i1.jpg" alt="" /> -->
               <div class="p_icon">
                 <%= link_to product do %>
                   <i class="ti-eye"></i>
                 <% end %>
               
-                <a href="#">
-                  <i class="ti-heart"></i>
-                </a>
                 
-                    <%= button_to 'addItem', addItem_path(product), method: :get  %>
-                  <!-- <i class="ti-shopping-cart"></i> -->
-                
+                <%= link_to addItem_path(product), method: :get do  %>
+                    <!-- <%= button_to 'addItem', addItem_path(product), method: :get  %> -->
+                  <i class="ti-shopping-cart"></i>
+                  <% end %>
               </div>
             </div>
             <div class="product-btm">
