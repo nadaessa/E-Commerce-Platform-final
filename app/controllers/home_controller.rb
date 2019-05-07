@@ -61,27 +61,25 @@ class HomeController < ApplicationController
           @user = current_user.id
           @cartId = Cart.select(:id).where(user_id:@user).last.id
           @productId =params[:id]
+         
           @product_quantity= Product.select(:quantity).where(id:@productId).last.quantity
           if @product_quantity > 0
-              @ArrayProductId=CartItem.select(:product_id).where(cart_id: @cartId).all
-              @ArrayProductId.each do |product|
-                  if (product != @productId)
-                  CartItem.create(quantity:1, cart_id:@cartId , product_id:@productId )
-                  flash[:success] = "added succesfully"
-   
-                  elsif (product == @productId)
-                    flash[:alert] = "increase Q"
-                  end 
-                  # logger.debug @ArrayProductId.inspect
-                  # render plain: @ArrayProductId.inspect  
+              @item=CartItem.where(cart_id: @cartId ,product_id: @productId).empty?
+              if @item ==false
+               #exist in cart
+               @detail_item=CartItem.select(:quantity).where(cart_id: @cartId ,product_id: @productId).last.quantity
+               @quantity=@detail_item+1
+               CartItem.where(cart_id: @cartId ,product_id: @productId).update_all(quantity: @quantity)
+              else
+               #not exit in cart
+              CartItem.create(cart_id: @cartId ,product_id: @productId,quantity: 1)
               end    
               
-          else
-
+           else
             flash[:alert] = "This product #{@productId}is not available" 
           end
       
-          redirect_to '/'
+           redirect_to '/'
       
     end
 
